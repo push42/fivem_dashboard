@@ -1,0 +1,138 @@
+/* ==============================
+   Team
+   ============================== */
+   .team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 3px 0 0 -1px;
+    text-align: center;
+    font-size: 0;
+    word-spacing: 0;
+    color: #aaa;
+    font-family: 'Montserrat', sans-serif;
+	top: 2%;
+}
+
+.team-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 270px;
+    margin: 20px 0 0 1px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, #0a0a0a, #1b1b1b);
+}
+
+.team-item:hover {
+    transform: translateY(-10px);
+}
+
+.team-item-name {
+    margin-bottom: 2px;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #007bff;
+}
+
+.team-item-role {
+    margin-bottom: 5px;
+    font-size: 8.5px;
+    font-weight: 500;
+    color: #bbb;
+}
+
+/* Dark Version */
+.team-item-descr.dark,
+.no-mobile .team-item:hover .team-item-descr.dark,
+.team-item.js-active .team-item-descr.dark {
+    color: #bbb;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.team-item-descr.dark .team-social-links a {
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.team-item-descr.dark .team-social-links a:hover {
+    color: #007bff;
+}
+
+
+
+.glow-text {
+	animation: glowing 2s infinite;
+}
+
+@keyframes glowing {
+	0% {
+		color: #fff;
+		text-shadow: 0 0 5px #fff;
+	}
+
+	50% {
+		color: #a3a2ff;
+		text-shadow: 0 0 20px #a3a2ff, 0 0 30px #a3a2ff;
+	}
+
+	100% {
+		color: #fff;
+		text-shadow: 0 0 5px #fff;
+	}
+}
+
+.glow-text2 {
+	animation: glowing2 2s infinite;
+}
+
+@keyframes glowing2 {
+	0% {
+		color: #fff;
+		text-shadow: 0 0 5px #ffffff79;
+	}
+
+	50% {
+		color: #f4f6f7;
+		text-shadow: 0 0 10px #f8f8f8a6, 0 0 30px #a3a2ff;
+	}
+
+	100% {
+		color: #fff;
+		text-shadow: 0 0 5px #ffffff7c;
+	}
+}
+
+.glowing-particles {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 200px;
+	background: radial-gradient(circle, #ff0 5%, transparent 10%);
+	background-size: 1000% 1000%;
+	animation: glowing-particles 2s infinite;
+}
+
+@keyframes glowing-particles {
+	0% {
+		background-position: 0% 0%;
+	}
+
+	50% {
+		background-position: 100% 100%;
+	}
+
+	100% {
+		background-position: 0% 0%;
+	}
+}

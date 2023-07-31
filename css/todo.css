@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+/* Container */
+.todo-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    background: linear-gradient(to right, #0a0a0a, #1b1b1b);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+.title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Field & Button */
+.input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#task-input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    background: #1b1e23;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+#task-input:focus {
+    border-color: #9fa8da;
+    box-shadow: 0 0 5px rgba(159, 168, 218, 1);
+}
+
+#add-task-button {
+    padding: 10px 20px;
+    background: #3949ab;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#add-task-button:hover {
+    background: #5c6bc0;
+    transform: scale(1.1);
+}
+
+/* Task List */
+#task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#task-list li {
+    background-color: #2b2e33;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#task-list li:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+.delete-task-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.delete-task-button:hover {
+    background-color: #e53935;
+    transform: scale(1.1);
+}
+
+#task-list li.completed {
+    color: #4caf50;
+    text-decoration: line-through;
+    background-color: #1e4425;
+}
+
+.todoicon {
+    margin-right: 18.5px;
+    color: #007bff;
+}
+

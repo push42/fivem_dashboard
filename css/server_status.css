@@ -1,0 +1,153 @@
+/* Server status styles */
+.server-status {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -25px;
+}
+
+.server-status .status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    animation: blink 1s infinite;
+}
+
+.server-status .status-circle.online {
+    background-color: green;
+}
+
+.server-status .status-circle.offline {
+    background-color: red;
+}
+
+.server-status .status-circle.error {
+    background-color: orange;
+}
+
+
+@keyframes blink {
+    50% {
+    opacity: 0;
+    }
+}
+
+#serverStatusText {
+    font-family: Montserrat, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .server-status-container,
+    .server-status-container2 {
+        top: 5%;
+        transform: translateY(75%);
+        width: 100%;
+        max-width: 400px;
+        left: 0;
+    }
+}
+
+/* Position the player list modal */
+.player-list-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1b1b1b;
+    border-radius: 10px;
+    padding: 60px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    color: #fff;
+}
+
+/* Style for the close button in the modal */
+.close-button {
+    background-color: #0052ea;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 70px;
+}
+
+/* blur background when the modal is open */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+    .player-list-button {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .player-list-button:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+        transition: transform 0.5s;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      
+      .player-list-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+      }
+      
+      .player-list-button:hover:before {
+        transform: scaleX(1);
+      }
+      
+      .player-list-button:active {
+        transform: scale(0.95);
+        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+      }
+
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#query-select {
+    color: #fff;
+    font-weight: 600;
+    font-size: 10.5px;
+    background-color: transparent;
+    border: 2.2px solid #fff;
+    border-radius: 15px;
+    padding: 5px 5px;
+}

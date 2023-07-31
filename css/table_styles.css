@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(2, 2, 2, 0.150);
+    table-layout: auto;
+    background: #1b1b1b;
+    color: #fff;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 3px solid rgba(2, 2, 2, 0.301);
+    border-right: 3px solid rgba(2, 2, 2, 0.301);
+    border-radius: 3px;
+    word-break: break-word;
+    font-size: 12px;
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+tr:nth-child(even) {
+    background: #171716;
+    color: #fff;
+}

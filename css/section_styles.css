@@ -1,0 +1,15 @@
+.users-section,.owned-vehicles-section,.codem-fishing-section,.codem-crafting-section,.company-money-section,.live-call-section,.parked-vehicles-section,.gangstashes-section,.inventory-section,.speedcams-section,.mechanic-section {
+    background: rgb(3,4,22);
+    background: radial-gradient(circle, rgba(3,4,22,1) 0%, rgba(27,27,27,1) 100%);
+    padding: 20px;
+    border-radius: 25px;
+    border: 5px solid rgba(2, 2, 2, 0.150);
+}
+
+.users-section h2,.owned-vehicles-section h2,.codem-fishing-section h2,.codem-crafting-section h2,.company-money-section h2,.live-call-section h2,.parked-vehicles-section h2,.gangstashes-section h2,.inventory-section h2,.speedcams-section h2,.mechanic-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 18px;
+}
+

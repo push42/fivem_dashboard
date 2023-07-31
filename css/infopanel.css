@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.new-sections-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(to right, #0a0a0a, #1b1b1b);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+  }
+  
+  .new-section-1 {
+    flex: 1;
+    margin-right: 10px;
+    padding: 5px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  
+  .new-section-2 {
+    flex: 1;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13.5px;
+    animation: glowingfame 2s infinite;
+  }
+
+  @keyframes glowingfame {
+    0% {
+      color: #fff;
+      text-shadow: 0 0 5px #d9ff02;
+    }
+  
+    50% {
+      color: #f4f6f7;
+      text-shadow: 0 0 10px #d9ff02, 0 0 20px #d9ff02;
+    }
+  
+    100% {
+      color: #fff;
+      text-shadow: 0 0 5px #d9ff02;
+    }
+  }
+  
+
+  .equalsymbol {
+    margin-top: 5px;
+    color: rgb(207, 207, 207);
+  }
+
+  .activechat {
+    width: 16px;
+    height: auto;
+    margin-right: 14px;
+    margin-bottom: -4px;
+  }
+
+  .crown {
+    width: 16px;
+    height: auto;
+    margin-right: 14px;
+    margin-bottom: -4px;
+  }
