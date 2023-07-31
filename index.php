@@ -231,7 +231,6 @@ if ($conn_webdev->connect_error) {
                         </div>
                         </a>
                         <!-- End Navigation -->
-
                         <!-- Navigation -->
                         <a href="https://roguev.de" target="_blank">
                         <div class="team-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
@@ -252,6 +251,7 @@ if ($conn_webdev->connect_error) {
             </section>
             <!-- End Team Section -->
 
+
 <header class="image-header">
         <div class="header-content">
             <h1><img src="https://i.ibb.co/smLg902/Untitled-1.gif" alt="Logo" class="logo-image">ROGUEV - DASHBOARD</h1>
@@ -262,7 +262,6 @@ if ($conn_webdev->connect_error) {
 <body>
 <div id="particles-js"></div>
    
-
 
 
     <div class="server-status-container2">
@@ -278,9 +277,6 @@ if ($conn_webdev->connect_error) {
         </form>
     </div>
 </div>
-
-
-
 
 <!-- Hidden modal container -->
 <div id="avatar-modal" class="modal">
@@ -332,7 +328,6 @@ if ($conn_webdev->connect_error) {
     </div>
 </div>
 
-
 <div class="info-box">
     <h2>Dashboard | Informationen</h2>
     <p>Hier kannst Du die Daten unserer FiveM Gameserver einsehen, ohne direkten Zugriff auf die Datenbank zu haben. Keine Sorge, Du kannst hier nichts verändern – diese Funktionen sind derzeit nur für bestimmte Ränge geplant und werden noch entwickelt.</p>
@@ -341,8 +336,6 @@ if ($conn_webdev->connect_error) {
     <p>Vielen Dank, dass Du Teil der ROGUEV-Community bist!</p>
     <p>Dein Entwickler-Team von ROGUEV</p>
 </div>
-
-
 
 <div class="title2"><i class="fa-solid fa-crown title2icon"></i>Hall of Fame</div>
 <div class="new-sections-container" style="display: flex; justify-content: space-between;">
@@ -357,7 +350,6 @@ if ($conn_webdev->connect_error) {
     </div>
     </div>
 </div>
-
 
 <div class="chatbox-container">
   <div class="announcements">
@@ -401,9 +393,6 @@ if ($conn_webdev->connect_error) {
   </div>
 </div>
 
-
-
-
 <div class="todo-container">
   <h2 class="title"><i class="fa-regular fa-circle-check todoicon"></i>To-Do Liste</h2>
   <div class="input-wrapper">
@@ -413,1276 +402,1273 @@ if ($conn_webdev->connect_error) {
   <ul id="task-list"></ul>
 </div>
 
-
-
-
-
     <div class="logo-imagetext2"></div>
     <div class="spacer01"></div>
     <div class="container" id="rvdatenbank">
 
-        <div class="users-section">
-            <h2><i class="fa-solid fa-user fontawesomeicons" style="color: #0052ea;"></i>Registrierte Spieler</h2>
-            <!-- Add search box for users -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-users" placeholder="Suche nach Spielern...">
-            </div>
-            <div class="info-accounts">
-            <i class="fa-solid fa-info info-accounticon fa-lg"></i>Bei den Konten steht das Symbol
-            <i class="fas fa-building-columns icon-beschreibung1 fa-lg"></i> für Bank,
-            <i class="fas fa-sack-dollar icon-beschreibung2 fa-lg"></i>  für Schwarzgeld,
-            <i class="fas fa-bitcoin-sign icon-beschreibung3 fa-lg"></i>  für Crypto &
-            <i class="fas fa-money-bill-1 icon-beschreibung4 fa-lg"></i>  für Bargeld.
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultUsers->num_rows > 0) {
-                    echo '<table id="users-table">';
-                    echo "<tr><th>Konten</th><th>Identifier</th><th>Vorname</th><th>Nachname</th><th>Beruf</th><th>Rang</th><th>Gruppe</th></tr>";
-                    while ($row = $resultUsers->fetch_assoc()) {
-                        // Convert the JSON string to an array
-                        $accounts = json_decode($row["accounts"], true);
 
-                        $formattedAccounts = "";
-                        foreach ($accounts as $account => $value) {
-                            // Define the Font Awesome icon for each account
-                            $icons = [
-                                "bank" =>
-                                    '<i class="fas fa-building-columns icon-beschreibung1"></i>',
-                                "black_money" =>
-                                    '<i class="fas fa-sack-dollar icon-beschreibung2"></i>',
-                                "cosmo" =>
-                                    '<i class="fas fa-bitcoin-sign icon-beschreibung3"></i>',
-                                "money" =>
-                                    '<i class="fas fa-money-bill-1 icon-beschreibung4"></i>',
-                            ];
+<div class="users-section">
+    <h2><i class="fa-solid fa-user fontawesomeicons" style="color: #0052ea;"></i>Registrierte Spieler</h2>
+    <!-- Add search box for users -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-users" placeholder="Suche nach Spielern...">
+    </div>
+    <div class="info-accounts">
+    <i class="fa-solid fa-info info-accounticon fa-lg"></i>Bei den Konten steht das Symbol
+    <i class="fas fa-building-columns icon-beschreibung1 fa-lg"></i> für Bank,
+    <i class="fas fa-sack-dollar icon-beschreibung2 fa-lg"></i>  für Schwarzgeld,
+    <i class="fas fa-bitcoin-sign icon-beschreibung3 fa-lg"></i>  für Crypto &
+    <i class="fas fa-money-bill-1 icon-beschreibung4 fa-lg"></i>  für Bargeld.
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultUsers->num_rows > 0) {
+            echo '<table id="users-table">';
+            echo "<tr><th>Konten</th><th>Identifier</th><th>Vorname</th><th>Nachname</th><th>Beruf</th><th>Rang</th><th>Gruppe</th></tr>";
+            while ($row = $resultUsers->fetch_assoc()) {
+                // Convert the JSON string to an array
+                $accounts = json_decode($row["accounts"], true);
 
-                            // Append the account icon and value with a line break
-                            $formattedAccounts .=
-                                $icons[$account] . " : " . $value . "<br>";
-                        }
+                $formattedAccounts = "";
+                foreach ($accounts as $account => $value) {
+                    // Define the Font Awesome icon for each account
+                    $icons = [
+                        "bank" =>
+                            '<i class="fas fa-building-columns icon-beschreibung1"></i>',
+                        "black_money" =>
+                            '<i class="fas fa-sack-dollar icon-beschreibung2"></i>',
+                        "cosmo" =>
+                            '<i class="fas fa-bitcoin-sign icon-beschreibung3"></i>',
+                        "money" =>
+                            '<i class="fas fa-money-bill-1 icon-beschreibung4"></i>',
+                    ];
 
-                        echo "<tr>";
-                        echo "<td>" . $formattedAccounts . "</td>";
-                        echo "<td>" . $row["identifier"] . "</td>";
-                        echo "<td>" . $row["firstname"] . "</td>";
-                        echo "<td>" . $row["lastname"] . "</td>";
-                        echo "<td>" . $row["job"] . "</td>";
-                        echo "<td>" . $row["job_grade"] . "</td>";
-                        echo "<td>" . $row["group"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
+                    // Append the account icon and value with a line break
+                    $formattedAccounts .=
+                        $icons[$account] . " : " . $value . "<br>";
+                }
+
+                echo "<tr>";
+                echo "<td>" . $formattedAccounts . "</td>";
+                echo "<td>" . $row["identifier"] . "</td>";
+                echo "<td>" . $row["firstname"] . "</td>";
+                echo "<td>" . $row["lastname"] . "</td>";
+                echo "<td>" . $row["job"] . "</td>";
+                echo "<td>" . $row["job_grade"] . "</td>";
+                echo "<td>" . $row["group"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="owned-vehicles-section">
+    <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #0052ea;"></i>Fahrzeuge von Usern</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-vehicles" placeholder="Suche nach Fahrzeugen...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultOwnedVehicles->num_rows > 0) {
+            echo '<table id="vehicles-table">';
+            echo "<tr><th>Besitzer</th><th>Kennzeichen</th><th>Klasse</th><th>Garage</th><th>Abschlepphof</th></tr>";
+            while ($row = $resultOwnedVehicles->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["owner"] . "</td>";
+                echo "<td>" . $row["plate"] . "</td>";
+                echo "<td>" . $row["type"] . "</td>";
+                echo "<td>" . $row["parking"] . "</td>";
+                echo "<td>" . $row["location"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="parked-vehicles-section">
+    <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #0052ea;"></i>Ausgeparkte Fahrzeuge</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-parked-vehicles" placeholder="Nach einem Fahrzeug suchen...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultGeparkteAutos->num_rows > 0) {
+            echo '<table id="parked-vehicles-table">';
+            echo "<tr><th>Kennzeichen</th><th>Position X</th><th>Position Y</th><th>Position Z</th></tr>";
+            while ($row = $resultGeparkteAutos->fetch_assoc()) {
+                echo "<tr>";
+                $tuningData = json_decode($row["tuning"], true); // Decode the JSON data into an array
+                $firstWord = explode("-", $tuningData[0])[0]; // Get the first word from the first element of the array
+                echo "<td>" . $firstWord . "</td>";
+                echo "<td>" . $row["posX"] . "</td>";
+                echo "<td>" . $row["posY"] . "</td>";
+                echo "<td>" . $row["posZ"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="codem-fishing-section">
+    <h2><i class="fa-solid fa-fish fontawesomeicons" style="color: #0052ea;"></i>Angeln</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-fishing" placeholder="Suche nach Spielern...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultCodemFishing->num_rows > 0) {
+            echo '<table id="fishing-table">';
+            echo "<tr><th>Identifier</th><th>Level</th><th>XP</th><th>IC-Name</th></tr>";
+            while ($row = $resultCodemFishing->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["identifier"] . "</td>";
+                echo "<td>" . $row["level"] . "</td>";
+                echo "<td>" . $row["xp"] . "</td>";
+                echo "<td>" . $row["playername"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="codem-crafting-section">
+    <h2><i class="fa-solid fa-hammer fontawesomeicons" style="color: #0052ea;"></i>Crafting</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-crafting" placeholder="Suche nach Spielern...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultCodemCrafting->num_rows > 0) {
+            echo '<table id="crafting-table">';
+            echo "<tr><th>Identifier</th><th>Level</th><th>XP</th></tr>";
+            while ($row = $resultCodemCrafting->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["identifier"] . "</td>";
+                echo "<td>" . $row["level"] . "</td>";
+                echo "<td>" . $row["xp"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="company-money-section">
+    <h2><i class="fa-solid fa-money-check-dollar fontawesomeicons" style="color: #0052ea;"></i>Firmenkonten</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-company" placeholder="Suche nach Firmen...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultCompanyMoney->num_rows > 0) {
+            echo '<table id="company-table">';
+            echo "<tr><th>Firma</th><th>Kontostand</th></tr>";
+            while ($row = $resultCompanyMoney->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["money"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="live-call-section">
+    <h2><i class="fa-solid fa-headset fontawesomeicons" style="color: #0052ea;"></i>Livesupport (über ESC)</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-livecall" placeholder="Supportfall suchen...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultLiveCall->num_rows > 0) {
+            echo '<table id="livecall-table">';
+            echo "<tr><th>IC Name</th><th>Nachricht</th><th>Datum</th></tr>";
+            while ($row = $resultLiveCall->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["playername"] . "</td>";
+
+                // Decode the JSON data
+                $messageData = json_decode($row["message"], true);
+
+                // Check if "message" exists in the decoded data
+                if (isset($messageData["message"])) {
+                    $message = $messageData["message"];
                 } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
+                    // Fallback to the original message if "message" field is not found
+                    $message = $row["message"];
+                }
 
-        <div class="owned-vehicles-section">
-            <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #0052ea;"></i>Fahrzeuge von Usern</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-vehicles" placeholder="Suche nach Fahrzeugen...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultOwnedVehicles->num_rows > 0) {
-                    echo '<table id="vehicles-table">';
-                    echo "<tr><th>Besitzer</th><th>Kennzeichen</th><th>Klasse</th><th>Garage</th><th>Abschlepphof</th></tr>";
-                    while ($row = $resultOwnedVehicles->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["owner"] . "</td>";
-                        echo "<td>" . $row["plate"] . "</td>";
-                        echo "<td>" . $row["type"] . "</td>";
-                        echo "<td>" . $row["parking"] . "</td>";
-                        echo "<td>" . $row["location"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
+                echo "<td>" . $message . "</td>";
+                echo "<td>" . $row["date"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
 
-        <div class="parked-vehicles-section">
-            <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #0052ea;"></i>Ausgeparkte Fahrzeuge</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-parked-vehicles" placeholder="Nach einem Fahrzeug suchen...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultGeparkteAutos->num_rows > 0) {
-                    echo '<table id="parked-vehicles-table">';
-                    echo "<tr><th>Kennzeichen</th><th>Position X</th><th>Position Y</th><th>Position Z</th></tr>";
-                    while ($row = $resultGeparkteAutos->fetch_assoc()) {
-                        echo "<tr>";
-                        $tuningData = json_decode($row["tuning"], true); // Decode the JSON data into an array
-                        $firstWord = explode("-", $tuningData[0])[0]; // Get the first word from the first element of the array
-                        echo "<td>" . $firstWord . "</td>";
-                        echo "<td>" . $row["posX"] . "</td>";
-                        echo "<td>" . $row["posY"] . "</td>";
-                        echo "<td>" . $row["posZ"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
+<div class="gangstashes-section">
+    <h2><i class="fa-solid fa-hands-asl-interpreting fontawesomeicons" style="color: #0052ea;"></i>Gangübersicht</h2>
+    <!-- Add search box for users -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-gangstashes" placeholder="Suche nach Spielern...">
+    </div>
+    <div class="info-accounts">
+    <i class="fa-solid fa-info info-accounticon fa-lg"></i>In der Spalte "Deaktiviert?" steht 0 für NEIN, 1 für JA.
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultGangStashes->num_rows > 0) {
+            echo '<table id="vehicles-table">';
+            echo "<tr><th>Gang / Fraktion</th><th>Gang Notirity</th><th>Gangkonto</th><th>Gangleitung</th><th>Deaktiviert?</th></tr>";
+            while ($row = $resultGangStashes->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["notoriety"] . "</td>";
+                echo "<td>" . $row["cash"] . "</td>";
+                echo "<td>" . $row["leader"] . "</td>";
+                echo "<td>" . $row["disabled"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
 
-        <div class="codem-fishing-section">
-            <h2><i class="fa-solid fa-fish fontawesomeicons" style="color: #0052ea;"></i>Angeln</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-fishing" placeholder="Suche nach Spielern...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultCodemFishing->num_rows > 0) {
-                    echo '<table id="fishing-table">';
-                    echo "<tr><th>Identifier</th><th>Level</th><th>XP</th><th>IC-Name</th></tr>";
-                    while ($row = $resultCodemFishing->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["identifier"] . "</td>";
-                        echo "<td>" . $row["level"] . "</td>";
-                        echo "<td>" . $row["xp"] . "</td>";
-                        echo "<td>" . $row["playername"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
 
-        <div class="codem-crafting-section">
-            <h2><i class="fa-solid fa-hammer fontawesomeicons" style="color: #0052ea;"></i>Crafting</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-crafting" placeholder="Suche nach Spielern...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultCodemCrafting->num_rows > 0) {
-                    echo '<table id="crafting-table">';
-                    echo "<tr><th>Identifier</th><th>Level</th><th>XP</th></tr>";
-                    while ($row = $resultCodemCrafting->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["identifier"] . "</td>";
-                        echo "<td>" . $row["level"] . "</td>";
-                        echo "<td>" . $row["xp"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
+<div class="inventory-section">
+    <h2><i class="fa-solid fa-box-open fontawesomeicons" style="color: #0052ea;"></i>Inventare</h2>
+    <!-- Add search box for users -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-inventory" placeholder="Suche nach einem Inventar...">
+    </div>
+    <div class="info-inventory">
+    <i class="fa-solid fa-info info-accounticon fa-lg"></i>Hier kannst du alle Gegenstände einsehen die sich in einem Lager / Inventar befinden.</br> Für Gegenstände mit dem <i class="fas fa-box icon-beschreibung3"></i> wurden die Symbole noch nicht angepasst.
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+    <?php if ($resultPlayerInventory->num_rows > 0) {
+        echo '<table id="inventory-table">';
+        echo "<tr><th>Identifier</th><th>Bezeichnung</th><th>Inhalt</th></tr>";
+        while ($row = $resultPlayerInventory->fetch_assoc()) {
+            // Check if 'data' key exists in the row
+            if (isset($row["data"])) {
+                // Convert the JSON string to an array
+                $data = json_decode($row["data"], true);
 
-        <div class="company-money-section">
-            <h2><i class="fa-solid fa-money-check-dollar fontawesomeicons" style="color: #0052ea;"></i>Firmenkonten</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-company" placeholder="Suche nach Firmen...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultCompanyMoney->num_rows > 0) {
-                    echo '<table id="company-table">';
-                    echo "<tr><th>Firma</th><th>Kontostand</th></tr>";
-                    while ($row = $resultCompanyMoney->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["name"] . "</td>";
-                        echo "<td>" . $row["money"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
+                $formattedInventory = "";
+                if (is_array($data)) {
+                    // Construct the formatted inventory entry
+                    foreach ($data as $item) {
+                        if (
+                            isset($item["name"]) &&
+                            isset($item["count"])
+                        ) {
+                            // Define the Font Awesome icon based on the item name
+                            $icon = "";
 
-        <div class="live-call-section">
-            <h2><i class="fa-solid fa-headset fontawesomeicons" style="color: #0052ea;"></i>Livesupport (über ESC)</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-livecall" placeholder="Supportfall suchen...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultLiveCall->num_rows > 0) {
-                    echo '<table id="livecall-table">';
-                    echo "<tr><th>IC Name</th><th>Nachricht</th><th>Datum</th></tr>";
-                    while ($row = $resultLiveCall->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["playername"] . "</td>";
-
-                        // Decode the JSON data
-                        $messageData = json_decode($row["message"], true);
-
-                        // Check if "message" exists in the decoded data
-                        if (isset($messageData["message"])) {
-                            $message = $messageData["message"];
-                        } else {
-                            // Fallback to the original message if "message" field is not found
-                            $message = $row["message"];
-                        }
-
-                        echo "<td>" . $message . "</td>";
-                        echo "<td>" . $row["date"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
-
-        <div class="gangstashes-section">
-            <h2><i class="fa-solid fa-hands-asl-interpreting fontawesomeicons" style="color: #0052ea;"></i>Gangübersicht</h2>
-            <!-- Add search box for users -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-gangstashes" placeholder="Suche nach Spielern...">
-            </div>
-            <div class="info-accounts">
-            <i class="fa-solid fa-info info-accounticon fa-lg"></i>In der Spalte "Deaktiviert?" steht 0 für NEIN, 1 für JA.
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultGangStashes->num_rows > 0) {
-                    echo '<table id="vehicles-table">';
-                    echo "<tr><th>Gang / Fraktion</th><th>Gang Notirity</th><th>Gangkonto</th><th>Gangleitung</th><th>Deaktiviert?</th></tr>";
-                    while ($row = $resultGangStashes->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["name"] . "</td>";
-                        echo "<td>" . $row["notoriety"] . "</td>";
-                        echo "<td>" . $row["cash"] . "</td>";
-                        echo "<td>" . $row["leader"] . "</td>";
-                        echo "<td>" . $row["disabled"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
-
-        
-        <div class="inventory-section">
-            <h2><i class="fa-solid fa-box-open fontawesomeicons" style="color: #0052ea;"></i>Inventare</h2>
-            <!-- Add search box for users -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-inventory" placeholder="Suche nach einem Inventar...">
-            </div>
-            <div class="info-inventory">
-            <i class="fa-solid fa-info info-accounticon fa-lg"></i>Hier kannst du alle Gegenstände einsehen die sich in einem Lager / Inventar befinden.</br> Für Gegenstände mit dem <i class="fas fa-box icon-beschreibung3"></i> wurden die Symbole noch nicht angepasst.
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-            <?php if ($resultPlayerInventory->num_rows > 0) {
-                echo '<table id="inventory-table">';
-                echo "<tr><th>Identifier</th><th>Bezeichnung</th><th>Inhalt</th></tr>";
-                while ($row = $resultPlayerInventory->fetch_assoc()) {
-                    // Check if 'data' key exists in the row
-                    if (isset($row["data"])) {
-                        // Convert the JSON string to an array
-                        $data = json_decode($row["data"], true);
-
-                        $formattedInventory = "";
-                        if (is_array($data)) {
-                            // Construct the formatted inventory entry
-                            foreach ($data as $item) {
-                                if (
-                                    isset($item["name"]) &&
-                                    isset($item["count"])
-                                ) {
-                                    // Define the Font Awesome icon based on the item name
-                                    $icon = "";
-
-                                    // Check for different item name prefixes and set the corresponding icon
-                                    if (
-                                        strpos($item["name"], "WEAPON_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gun icon-beschreibung5"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "ammo-") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-battery-three-quarters icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "joint_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-joint icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "drug_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-tablets icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "money") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-dollar icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "diamond") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gem icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "washed_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gem icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "stone") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gem icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "washpan") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gem icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "waffen_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-screwdriver icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "police_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-person-military-pointing icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "cd") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-compact-disc icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "medbag") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-suitcase-medical icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "medikit") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-suitcase-medical icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "defib") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-suitcase-medical icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "lighter") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "at_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-circle-plus icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "tailor") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "woodenrod") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "spray") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "grubber") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "meth") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-tablets icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "boombox") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-music icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "hammer") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-hammer icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "pickaxe") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "pipette") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-eye-dropper icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "handsaw") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "shovel") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "woodaxe") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "crowbar") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos(
-                                            $item["name"],
-                                            "heckenscheere"
-                                        ) === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wrench icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "juwerlycore") ===
-                                        0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gem icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "hacking") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-microchip icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "usb") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-microchip icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "dongle") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-microchip icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "black_usb") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-microchip icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "vpn") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-microchip icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "weed") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cannabis icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "papes") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cannabis icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "duenger") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cannabis icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "handcuffs") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-handcuffs icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "zipties") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-hands-bound icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "headbag") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-eye-slash icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "cutter") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-scissors icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "plastik") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-sheet-plastic icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "metal") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-sheet-plastic icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "metall") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-sheet-plastic icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "carjack") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-car icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "carokit") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-car icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "lab_key") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-key icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "gym_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-id-card-clip icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "grinder") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cannabis icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "fake_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-list-ol icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "nitrous") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gauge-high icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "raw_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cannabis icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "plantpot") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cannabis icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "water") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-glass-water icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "mars") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "snickers") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "bounty") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "milkyway") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "donut2") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "donut1") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "twix") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-cookie icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "black_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "red_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "gold_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "wet_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "pink_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "phone") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "pet") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-dog icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos(
-                                            $item["name"],
-                                            "healthybabymineral"
-                                        ) === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-baby icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "contract") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-file-signature icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos(
-                                            $item["name"],
-                                            "healthybabyfood"
-                                        ) === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-baby icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos(
-                                            $item["name"],
-                                            "comfortdiaper"
-                                        ) === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-baby icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "baby") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-baby icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "classic_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "white_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-phone icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "panties") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-shirt icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "tvremote") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-tv icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "garbage") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-trash icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "vest_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-vest icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "bandage") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-bandage icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "uncut_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gem icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "laptop") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-laptop icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "gasoline") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-gas-pump icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "id_card") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-id-card icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "car_") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-car-battery icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "repair") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-toolbox icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "advrepair") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-toolbox icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "backpack") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-bag-shopping icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "burger") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-burger icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "coffee") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-mug-saucer icon-beschreibung6"></i>';
-                                    } elseif (
-                                        strpos($item["name"], "wallet") === 0
-                                    ) {
-                                        $icon =
-                                            '<i class="fas fa-wallet icon-beschreibung6"></i>';
-                                    } else {
-                                        $icon =
-                                            '<i class="fas fa-box icon-beschreibung3"></i>';
-                                    }
-
-                                    // Append the formatted inventory entry to the overall formatted inventory
-                                    $formattedInventory .=
-                                        $icon .
-                                        " " .
-                                        $item["name"] .
-                                        " : " .
-                                        $item["count"] .
-                                        "<br>";
-                                }
+                            // Check for different item name prefixes and set the corresponding icon
+                            if (
+                                strpos($item["name"], "WEAPON_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gun icon-beschreibung5"></i>';
+                            } elseif (
+                                strpos($item["name"], "ammo-") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-battery-three-quarters icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "joint_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-joint icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "drug_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-tablets icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "money") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-dollar icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "diamond") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gem icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "washed_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gem icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "stone") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gem icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "washpan") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gem icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "waffen_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-screwdriver icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "police_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-person-military-pointing icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "cd") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-compact-disc icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "medbag") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-suitcase-medical icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "medikit") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-suitcase-medical icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "defib") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-suitcase-medical icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "lighter") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "at_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-circle-plus icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "tailor") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "woodenrod") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "spray") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "grubber") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "meth") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-tablets icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "boombox") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-music icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "hammer") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-hammer icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "pickaxe") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "pipette") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-eye-dropper icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "handsaw") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "shovel") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "woodaxe") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "crowbar") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos(
+                                    $item["name"],
+                                    "heckenscheere"
+                                ) === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wrench icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "juwerlycore") ===
+                                0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gem icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "hacking") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-microchip icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "usb") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-microchip icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "dongle") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-microchip icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "black_usb") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-microchip icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "vpn") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-microchip icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "weed") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cannabis icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "papes") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cannabis icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "duenger") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cannabis icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "handcuffs") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-handcuffs icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "zipties") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-hands-bound icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "headbag") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-eye-slash icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "cutter") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-scissors icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "plastik") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-sheet-plastic icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "metal") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-sheet-plastic icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "metall") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-sheet-plastic icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "carjack") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-car icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "carokit") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-car icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "lab_key") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-key icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "gym_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-id-card-clip icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "grinder") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cannabis icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "fake_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-list-ol icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "nitrous") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gauge-high icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "raw_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cannabis icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "plantpot") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cannabis icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "water") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-glass-water icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "mars") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "snickers") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "bounty") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "milkyway") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "donut2") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "donut1") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "twix") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-cookie icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "black_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "red_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "gold_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "wet_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "pink_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "phone") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "pet") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-dog icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos(
+                                    $item["name"],
+                                    "healthybabymineral"
+                                ) === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-baby icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "contract") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-file-signature icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos(
+                                    $item["name"],
+                                    "healthybabyfood"
+                                ) === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-baby icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos(
+                                    $item["name"],
+                                    "comfortdiaper"
+                                ) === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-baby icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "baby") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-baby icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "classic_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "white_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-phone icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "panties") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-shirt icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "tvremote") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-tv icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "garbage") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-trash icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "vest_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-vest icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "bandage") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-bandage icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "uncut_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gem icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "laptop") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-laptop icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "gasoline") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-gas-pump icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "id_card") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-id-card icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "car_") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-car-battery icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "repair") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-toolbox icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "advrepair") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-toolbox icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "backpack") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-bag-shopping icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "burger") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-burger icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "coffee") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-mug-saucer icon-beschreibung6"></i>';
+                            } elseif (
+                                strpos($item["name"], "wallet") === 0
+                            ) {
+                                $icon =
+                                    '<i class="fas fa-wallet icon-beschreibung6"></i>';
+                            } else {
+                                $icon =
+                                    '<i class="fas fa-box icon-beschreibung3"></i>';
                             }
-                        }
 
-                        echo "<tr>";
-                        echo "<td>" .
-                            (isset($row["owner"]) ? $row["owner"] : "") .
-                            "</td>";
-                        echo "<td>" .
-                            (isset($row["name"]) ? $row["name"] : "") .
-                            "</td>";
-                        echo "<td>" . $formattedInventory . "</td>";
-                        echo "</tr>";
+                            // Append the formatted inventory entry to the overall formatted inventory
+                            $formattedInventory .=
+                                $icon .
+                                " " .
+                                $item["name"] .
+                                " : " .
+                                $item["count"] .
+                                "<br>";
+                        }
                     }
                 }
-                echo "</table>";
-            } else {
-                echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-            } ?>
-            </div>
-        </div>
 
-        <div class="speedcams-section">
-            <h2><i class="fa-solid fa-video fontawesomeicons" style="color: #0052ea;"></i>Blitzer</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-speedcams" placeholder="Suche nach Blitzern...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultSpeedCams->num_rows > 0) {
-                    echo '<table id="speedcams-table">';
-                    echo "<tr><th>Blitzer ID</th><th>Bezeichnung</th><th>Einnahmen</th><th>Ausgelöst am</th><th>Summe</th><th>Geblitzte/r</th></tr>";
-                    while ($row = $resultSpeedCams->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["radarID"] . "</td>";
-                        echo "<td>" . $row["label"] . "</td>";
-                        echo "<td>" . $row["totalProfit"] . "</td>";
-                        echo "<td>" . $row["lastTime"] . "</td>";
-                        echo "<td>" . $row["lastProfit"] . "</td>";
-                        echo "<td>" . $row["lastUser"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
-
-        <div class="mechanic-section">
-            <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #0052ea;"></i>Mechaniker</h2>
-            <!-- Add search box for owned vehicles -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input type="text" id="search-mechanic" placeholder="Suche nach Mechaniker Werkstätten...">
-            </div>
-            <!-- Wrap the table in a scrollable container -->
-            <div class="table-container">
-                <?php if ($resultTigerMechanic->num_rows > 0) {
-                    echo '<table id="mechanic-table">';
-                    echo "<tr><th>Identifier</th><th>ID</th><th>Name</th><th>Kontostand</th><th>Angestellte</th><th>Lager/r</th></tr>";
-                    while ($row = $resultTigerMechanic->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["identifier"] . "</td>";
-                        echo "<td>" . $row["shopID"] . "</td>";
-                        echo "<td>" . $row["name"] . "</td>";
-                        echo "<td>" . $row["money"] . "</td>";
-                        echo "<td>" . $row["employees"] . "</td>";
-                        echo "<td>" . $row["storage"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
-                } ?>
-            </div>
-        </div>
+                echo "<tr>";
+                echo "<td>" .
+                    (isset($row["owner"]) ? $row["owner"] : "") .
+                    "</td>";
+                echo "<td>" .
+                    (isset($row["name"]) ? $row["name"] : "") .
+                    "</td>";
+                echo "<td>" . $formattedInventory . "</td>";
+                echo "</tr>";
+            }
+        }
+        echo "</table>";
+    } else {
+        echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+    } ?>
     </div>
-    <script>
+</div>
+
+<div class="speedcams-section">
+    <h2><i class="fa-solid fa-video fontawesomeicons" style="color: #0052ea;"></i>Blitzer</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-speedcams" placeholder="Suche nach Blitzern...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultSpeedCams->num_rows > 0) {
+            echo '<table id="speedcams-table">';
+            echo "<tr><th>Blitzer ID</th><th>Bezeichnung</th><th>Einnahmen</th><th>Ausgelöst am</th><th>Summe</th><th>Geblitzte/r</th></tr>";
+            while ($row = $resultSpeedCams->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["radarID"] . "</td>";
+                echo "<td>" . $row["label"] . "</td>";
+                echo "<td>" . $row["totalProfit"] . "</td>";
+                echo "<td>" . $row["lastTime"] . "</td>";
+                echo "<td>" . $row["lastProfit"] . "</td>";
+                echo "<td>" . $row["lastUser"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
+<div class="mechanic-section">
+    <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #0052ea;"></i>Mechaniker</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-mechanic" placeholder="Suche nach Mechaniker Werkstätten...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultTigerMechanic->num_rows > 0) {
+            echo '<table id="mechanic-table">';
+            echo "<tr><th>Identifier</th><th>ID</th><th>Name</th><th>Kontostand</th><th>Angestellte</th><th>Lager/r</th></tr>";
+            while ($row = $resultTigerMechanic->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["identifier"] . "</td>";
+                echo "<td>" . $row["shopID"] . "</td>";
+                echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["money"] . "</td>";
+                echo "<td>" . $row["employees"] . "</td>";
+                echo "<td>" . $row["storage"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+</div>
+<script>
 // **************************************** Gameserver Spielerliste ****************************************
-        // Get references to the elements
-        const playerListButton = document.getElementById('playerListButton');
-        const playerListModal = document.getElementById('playerListModal');
-        const closeButton = document.getElementById('closeButton');
-        const playerList = document.getElementById('playerList');
-        const modalOverlay = document.querySelector('.modal-overlay');
-        // Function to show the player list modal
-        function showPlayerListModal() {
-            // Clear existing player list
-            playerList.innerHTML = '';
-            // Add connected players to the modal
-            <?php if ($result && isset($result["playerslist"])) {
-                echo "const players = " .
-                    json_encode($result["playerslist"]) .
-                    ";";
-                echo "players.forEach(player => {";
-                echo 'const listItem = document.createElement("li");';
-                echo "listItem.textContent = player.name;";
-                echo "playerList.appendChild(listItem);";
-                echo "});";
-            } ?>
-            // Show the modal and overlay
-            playerListModal.style.display = 'block';
-            modalOverlay.style.display = 'block';
-        }
-        // Function to hide the player list modal
-        function hidePlayerListModal() {
-            // Hide the modal and overlay
-            playerListModal.style.display = 'none';
-            modalOverlay.style.display = 'none';
-        }
-        // Add event listeners to the button and close button
-        playerListButton.addEventListener('click', showPlayerListModal);
-        closeButton.addEventListener('click', hidePlayerListModal);
+// Get references to the elements
+const playerListButton = document.getElementById('playerListButton');
+const playerListModal = document.getElementById('playerListModal');
+const closeButton = document.getElementById('closeButton');
+const playerList = document.getElementById('playerList');
+const modalOverlay = document.querySelector('.modal-overlay');
+// Function to show the player list modal
+function showPlayerListModal() {
+    // Clear existing player list
+    playerList.innerHTML = '';
+    // Add connected players to the modal
+    <?php if ($result && isset($result["playerslist"])) {
+        echo "const players = " .
+            json_encode($result["playerslist"]) .
+            ";";
+        echo "players.forEach(player => {";
+        echo 'const listItem = document.createElement("li");';
+        echo "listItem.textContent = player.name;";
+        echo "playerList.appendChild(listItem);";
+        echo "});";
+    } ?>
+    // Show the modal and overlay
+    playerListModal.style.display = 'block';
+    modalOverlay.style.display = 'block';
+}
+// Function to hide the player list modal
+function hidePlayerListModal() {
+    // Hide the modal and overlay
+    playerListModal.style.display = 'none';
+    modalOverlay.style.display = 'none';
+}
+// Add event listeners to the button and close button
+playerListButton.addEventListener('click', showPlayerListModal);
+closeButton.addEventListener('click', hidePlayerListModal);
 
 // **************************************** Suchfunktionen in den Datensätzen ****************************************
-        function searchUsers() {
-            const input = document.getElementById("search-users");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("users-table");
-            const rows = table.getElementsByTagName("tr");
+function searchUsers() {
+    const input = document.getElementById("search-users");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("users-table");
+    const rows = table.getElementsByTagName("tr");
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchVehicles() {
-            const input = document.getElementById("search-vehicles");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("vehicles-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchVehicles() {
+    const input = document.getElementById("search-vehicles");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("vehicles-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchFishing() {
-            const input = document.getElementById("search-fishing");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("fishing-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchFishing() {
+    const input = document.getElementById("search-fishing");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("fishing-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchCrafting() {
-            const input = document.getElementById("search-crafting");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("crafting-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchCrafting() {
+    const input = document.getElementById("search-crafting");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("crafting-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchCompany() {
-            const input = document.getElementById("search-company");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("company-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchCompany() {
+    const input = document.getElementById("search-company");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("company-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchLiveCall() {
-            const input = document.getElementById("search-livecall");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("livecall-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchLiveCall() {
+    const input = document.getElementById("search-livecall");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("livecall-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchGeparkteAutos() {
-            const input = document.getElementById("search-parked-vehicles");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("parked-vehicles-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchGeparkteAutos() {
+    const input = document.getElementById("search-parked-vehicles");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("parked-vehicles-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchGangStashes() {
-            const input = document.getElementById("search-gangstashes");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("gangstashes-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchGangStashes() {
+    const input = document.getElementById("search-gangstashes");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("gangstashes-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchPlayerInventory() {
-            const input = document.getElementById("search-inventory");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("inventory-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchPlayerInventory() {
+    const input = document.getElementById("search-inventory");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("inventory-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchSpeedCams() {
-            const input = document.getElementById("search-speedcams");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("speedcams-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchSpeedCams() {
+    const input = document.getElementById("search-speedcams");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("speedcams-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
 
-        function searchTigerMechanic() {
-            const input = document.getElementById("search-mechanic");
-            const filter = input.value.toUpperCase();
-            const table = document.getElementById("mechanic-table");
-            const rows = table.getElementsByTagName("tr");
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 
-            for (let i = 0; i < rows.length; i++) {
-                const columns = rows[i].getElementsByTagName("td");
-                let found = false;
+function searchTigerMechanic() {
+    const input = document.getElementById("search-mechanic");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("mechanic-table");
+    const rows = table.getElementsByTagName("tr");
 
-                for (let j = 0; j < columns.length; j++) {
-                    const cell = columns[j];
-                    if (cell) {
-                        const txtValue = cell.textContent || cell.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
 
-                if (found) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
                 }
             }
         }
-        // Add event listeners to the search boxes
-        const searchInputUsers = document.getElementById("search-users");
-        searchInputUsers.addEventListener("keyup", searchUsers);
 
-        const searchInputVehicles = document.getElementById("search-vehicles");
-        searchInputVehicles.addEventListener("keyup", searchVehicles);
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+// Add event listeners to the search boxes
+const searchInputUsers = document.getElementById("search-users");
+searchInputUsers.addEventListener("keyup", searchUsers);
 
-        const searchInputFishing = document.getElementById("search-fishing");
-        searchInputFishing.addEventListener("keyup", searchFishing);
+const searchInputVehicles = document.getElementById("search-vehicles");
+searchInputVehicles.addEventListener("keyup", searchVehicles);
 
-        const searchInputCrafting = document.getElementById("search-crafting");
-        searchInputCrafting.addEventListener("keyup", searchCrafting);
+const searchInputFishing = document.getElementById("search-fishing");
+searchInputFishing.addEventListener("keyup", searchFishing);
 
-        const searchInputCompany = document.getElementById("search-company");
-        searchInputCompany.addEventListener("keyup", searchCompany);
+const searchInputCrafting = document.getElementById("search-crafting");
+searchInputCrafting.addEventListener("keyup", searchCrafting);
 
-        const searchInputLiveCall = document.getElementById("search-livecall");
-        searchInputLiveCall.addEventListener("keyup", searchLiveCall);
+const searchInputCompany = document.getElementById("search-company");
+searchInputCompany.addEventListener("keyup", searchCompany);
 
-        const searchInputGeparkteAutos = document.getElementById("search-parked-vehicles");
-        searchInputGeparkteAutos.addEventListener("keyup", searchGeparkteAutos);
+const searchInputLiveCall = document.getElementById("search-livecall");
+searchInputLiveCall.addEventListener("keyup", searchLiveCall);
 
-        const searchInputGangStashes = document.getElementById("search-gangstashes");
-        searchInputGangStashes.addEventListener("keyup", searchGeparkteAutos);
+const searchInputGeparkteAutos = document.getElementById("search-parked-vehicles");
+searchInputGeparkteAutos.addEventListener("keyup", searchGeparkteAutos);
 
-        const searchInputPlayerInventory = document.getElementById("search-inventory");
-        searchInputPlayerInventory.addEventListener("keyup", searchPlayerInventory);
+const searchInputGangStashes = document.getElementById("search-gangstashes");
+searchInputGangStashes.addEventListener("keyup", searchGeparkteAutos);
 
-        const searchInputSpeedCams = document.getElementById("search-speedcams");
-        searchInputSpeedCams.addEventListener("keyup", searchSpeedCams);
+const searchInputPlayerInventory = document.getElementById("search-inventory");
+searchInputPlayerInventory.addEventListener("keyup", searchPlayerInventory);
 
-        const searchInputTigerMechanic = document.getElementById("search-mechanic");
-        searchInputTigerMechanic.addEventListener("keyup", searchSpeedCams);
+const searchInputSpeedCams = document.getElementById("search-speedcams");
+searchInputSpeedCams.addEventListener("keyup", searchSpeedCams);
+
+const searchInputTigerMechanic = document.getElementById("search-mechanic");
+searchInputTigerMechanic.addEventListener("keyup", searchSpeedCams);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2154,8 +2140,6 @@ document.getElementById('task-list').addEventListener('click', function (event) 
   }
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Function to create a new task item in the To-Do list
 // Function to create a new task item in the To-Do list
 function createTaskItem(taskId, taskContent) {
   const taskList = document.getElementById('task-list');
