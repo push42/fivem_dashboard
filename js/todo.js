@@ -24,3 +24,4 @@ taskList.addEventListener('click', function (event) {
     event.target.remove();
   }
 });
+

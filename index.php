@@ -2,26 +2,27 @@
 session_start();
 include "chat_functions.php";
 
+
 // Check if the user is not logged in, then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
     exit();
 }
-
-
 // Logout functionality
 if (isset($_POST["logout"])) {
     session_destroy();
     header("Location: login.php");
     exit();
 }
-
-if (isset($_POST['refresh'])) {
-  // Simply return the current count without incrementing or decrementing
-  echo $count;
-  exit(); // Exit to prevent further execution of the script
+if (isset($_POST["refresh"])) {
+    // Simply return the current count without incrementing or decrementing
+    echo $count;
+    exit(); // Exit to prevent further execution of the script
 }
 
+
+
+// Change this into your Database details that hold your FiveM stuff
 // Start dashboard.php
 $servername = "localhost";
 $username = "root";
@@ -34,6 +35,13 @@ if ($conn->connect_error) {
     die("Verbindung fehlgeschlagen: " . $conn->connect_error);
 }
 
+
+
+// Here i define the database table names, if you use different database tables you need to change them here, also the names of the rows you want to read out
+// You can also use this to just read out everything:
+//   $sqlUsers =
+//      "SELECT * FROM users";
+//   $resultUsers = $conn->query($sqlUsers);
 $sqlUsers =
     "SELECT identifier, firstname, lastname, job, job_grade, accounts, `group` FROM users";
 $resultUsers = $conn->query($sqlUsers);
@@ -69,7 +77,7 @@ $sqlTigerMechanic = "SELECT * FROM t1ger_mechanic";
 $resultTigerMechanic = $conn->query($sqlTigerMechanic);
 
 // Server Status
-$server_id = "2241406";
+$server_id = "YOUR_SERVER_ID_FROM_TRACKYSERVER.COM";
 $url = "https://api.trackyserver.com/widget/index.php?id=" . $server_id;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -117,47 +125,43 @@ if (isset($_SESSION["avatar_url"])) {
     $avatar_url = $_SESSION["avatar_url"];
 } else {
     // Use a default avatar URL if avatar_url is not set
-    $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image
+    $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
 }
-
 
 $servername_webdev = "localhost";
 $username_webdev = "root";
 $password_webdev = "";
 $database_webdev = "webdev";
 
-$conn_webdev = new mysqli($servername_webdev, $username_webdev, $password_webdev, $database_webdev);
+$conn_webdev = new mysqli(
+    $servername_webdev,
+    $username_webdev,
+    $password_webdev,
+    $database_webdev
+);
 
 // Check the connection
 if ($conn_webdev->connect_error) {
     die("Connection to webdev failed: " . $conn_webdev->connect_error);
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/user_control.css">
-    <link rel="stylesheet" href="css/server_status.css">
-    <link rel="stylesheet" href="css/chatbox.css">
-    <link rel="stylesheet" href="css/infopanel.css">
-    <link rel="stylesheet" href="css/todo.css">
-    <link rel="stylesheet" href="css/teamsection.css">
-    <script type="text/javascript" src="js/chatstatistics.js"></script>
-    <script type="text/javascript" src="js/cb_scripts.js"></script>
-    <script type="text/javascript" src="js/todo.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="img/favicon.png"><!-- icon that is shown in the browser tab -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <audio id="mySound" src="audio/button-click2.mp3" style="display:none"></audio>
-    <audio id="mySound2" src="audio/button-click.mp3" style="display:none"></audio>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/main.css"><!-- main css file, other get imported in there -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9d1f4cdd15.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="img/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
+    <script src="js/todo.js"></script>
+    <script type="text/javascript" src="js/chatstatistics.js"></script>
+    <script type="text/javascript" src="js/cb_scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <audio id="mySound" src="audio/button-click2.mp3" style="display:none"></audio>
+    <audio id="mySound2" src="audio/button-click.mp3" style="display:none"></audio>
     <title>Rogue-V | Dashboard</title>
 </head>
 
@@ -1679,86 +1683,9 @@ if ($conn_webdev->connect_error) {
 
         const searchInputTigerMechanic = document.getElementById("search-mechanic");
         searchInputTigerMechanic.addEventListener("keyup", searchSpeedCams);
-// **************************************** Server Restartzeiten & Onlinestatus ****************************************
-    // Function to calculate the time remaining until the next restart
-    function calculateCountdown() {
-        const now = new Date();
-        const restartTimes = [0, 6, 12, 18, 24]; // Restart times in hours (24-hour format)
-        const nextRestart = new Date(now);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // Find the next restart time
-        for (const restartTime of restartTimes) {
-        nextRestart.setHours(restartTime, 0, 0, 0);
-        if (nextRestart > now) {
-            break;
-        }
-        }
-
-        // Calculate the time difference between now and the next restart
-        const timeDiff = nextRestart - now;
-
-        // Calculate hours, minutes, and seconds
-        const hours = Math.floor(timeDiff / 3600000);
-        const minutes = Math.floor((timeDiff % 3600000) / 60000);
-        const seconds = Math.floor((timeDiff % 60000) / 1000);
-
-        // Format the time as HH:MM:SS
-        const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-        // Update the countdown timer element
-        document.getElementById('countdown-timer').textContent = formattedTime;
-    }
-
-    // Call the calculateCountdown function initially to update the countdown immediately
-    calculateCountdown();
-
-    // Update the countdown every second (1000 milliseconds)
-    setInterval(calculateCountdown, 1000);
-
-
-  function isServerOnline(ip, port) {
-    const timeout = 2000;
-    const serverURL = `http://${ip}:${port}`;
-    const statusCircle = document.getElementById('serverStatusCircle');
-    const statusText = document.getElementById('serverStatusText');
-
-    statusText.innerHTML = 'Serverstatus: Serverdaten werden abgefragt...';
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', serverURL, true);
-    xhr.timeout = timeout;
-
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        statusCircle.classList.add('online');
-        statusCircle.classList.remove('offline');
-        statusText.innerHTML = 'Serverstatus: Online';
-      } else {
-        statusCircle.classList.add('offline');
-        statusCircle.classList.remove('online');
-        statusText.innerHTML = 'Serverstatus: Offline';
-      }
-    };
-
-    xhr.onerror = function () {
-        statusCircle.classList.add('error');
-        statusCircle.classList.remove('online', 'offline');
-        statusText.innerHTML = 'Serverstatus: Wartungsarbeiten';
-    };
-
-    xhr.send();
-  }
-
-const serverIP = 'roguev.de';
-const serverPort = '80';
-
-document.addEventListener('DOMContentLoaded', function () {
-    isServerOnline(serverIP, serverPort);
-});
-
-
-
-// ********************************************************************************* Avatar, Lo ***********************************************************************************
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* Avatar Logout Section Script */
     // Function to open the modal
     function openModal() {
@@ -1779,7 +1706,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for the close icon in the modal
     var closeModalIcon = document.getElementById("close-modal");
     closeModalIcon.addEventListener("click", closeModal);
-// *******************************************************************************************************************************************************************************
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.getElementById("joinchat-button").addEventListener("click", function() {
     document.querySelector(".overlay").style.display = "none";
@@ -1817,7 +1744,7 @@ joinChatButton.addEventListener('click', function () {
 
   }
 });
-////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Function to fetch and display the total number of messages
 function fetchTotalMessages() {
   // Send an AJAX request to the fetch_messages.php file
@@ -1850,7 +1777,7 @@ fetchTotalMessages();
 // Refresh the total messages count every 5 seconds
 setInterval(refreshTotalMessages, 5000);
 
-/////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Function to fetch and display chat messages when the page loads
   function loadChatMessages() {
     // Fetch the chat messages from the server
@@ -1929,6 +1856,7 @@ function displayMessage(username, avatarURL, message, timestamp) {
   checkAndHideNewIcon();
 }
 
+
 // Function to check if a message is new based on its timestamp
 function isMessageNew(timestamp) {
   if (!latestMessageTimestamp) {
@@ -1949,13 +1877,12 @@ function checkAndHideNewIcon() {
   });
 }
 
-///////
+
 
 // Call the function to check and hide the "New" icon every 5 seconds
 setInterval(checkAndHideNewIcon, 5000);
 
-//////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Add the 'input' event listener to update the remaining character count
 messageInput.addEventListener('input', updateCharacterCount);
 
@@ -1967,7 +1894,7 @@ function updateCharacterCount() {
   remainingCharactersElement.textContent = remainingCharacters;
 }
 
-//////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Function to send a message with a cooldown timer
 function sendMessageWithCooldown() {
   const message = messageInput.value.trim(); // Trim any leading/trailing whitespace
@@ -2032,8 +1959,6 @@ messageInput.addEventListener('keydown', (event) => {
 });
 
 
-
-
   // Function to get the current timestamp
   function getCurrentTime() {
     const now = new Date();
@@ -2076,22 +2001,8 @@ messageInput.addEventListener('keydown', (event) => {
     xhr.send(data);
   }
 
-// Sound Button
-// Get a reference to the button and the audio element
-var button = document.getElementById('header-info-right-login');
-var audio = document.getElementById('mySound2');
-//
-var button = document.getElementById('joinchat-button');
-var audio = document.getElementById('mySound');
 
-// Add an event listener to the button
-button.addEventListener('click', function() {
-// Play the audio
-audio.play();
-});
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Function to add a new task to the To-Do list
 function addTask() {
   const taskInput = document.getElementById('task-input');
@@ -2127,11 +2038,9 @@ function addTask() {
   };
   xhr.send('task=' + encodeURIComponent(taskText));
 }
-
   
-
   // Function to toggle the completion status of a task
-  function toggleTaskCompletion(taskItem, taskId) {
+function toggleTaskCompletion(taskItem, taskId) {
     // AJAX request to toggle the completion status in the database
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'toggle_task_completion.php', true);
@@ -2153,11 +2062,9 @@ function addTask() {
       console.error('Error sending AJAX request to toggle_task_completion.php');
     };
     xhr.send('taskId=' + encodeURIComponent(taskId));
-  }
+}
 
 
-
-// Function to load tasks from the database and display them in the To-Do list
 // Function to load tasks from the database and display them in the To-Do list
 function loadTasks() {
   // AJAX request to load tasks from the database
@@ -2201,12 +2108,8 @@ function loadTasks() {
   xhr.send();
 }
 
-
-
-
-
   // Function to delete a task from the To-Do list
-  function deleteTask(taskItem, taskId) {
+function deleteTask(taskItem, taskId) {
     // AJAX request to delete the task from the database
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'delete_task.php', true);
@@ -2231,12 +2134,12 @@ function loadTasks() {
   }
 
   // Event listener for the "Add Task" button
-  document.getElementById('add-task-button').addEventListener('click', function () {
+document.getElementById('add-task-button').addEventListener('click', function () {
     addTask();
   });
 
   // Event listener for Enter key in the task input field
-  document.getElementById('task-input').addEventListener('keydown', function (event) {
+document.getElementById('task-input').addEventListener('keydown', function (event) {
     if (event.keyCode === 13) {
       addTask();
     }
@@ -2266,9 +2169,8 @@ function createTaskItem(taskId, taskContent) {
 }
 
 document.addEventListener('DOMContentLoaded', loadTasks);
-
-
   </script>
+  <script type="text/javascript" src="js/serverrestart.js"></script>
 </body>
 
 </html>
