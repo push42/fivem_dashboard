@@ -66,7 +66,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Thies Bergenthal - thiesmk2@gmail.com - Discord: push.42
 
-Project Link: [https://github.com/reverseHaze/FiveM-Admin-Dashboard](https://github.com/reverseHaze/FiveM-Admin-Dashboard)
+Project Link: [https://github.com/reverseHaze/fivem_dashboard](https://github.com/reverseHaze/fivem_dashboard)
 
 ---
 
