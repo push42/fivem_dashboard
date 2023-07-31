@@ -1,6 +1,6 @@
 # Admin Dashboard Project
 
-![Project Image](project-image-url)
+![Project Image](https://i.ibb.co/r7X8n1q/banner0101.gif)
 
 > This is a project where I am developing a personal Admin Dashboard. It's a great place for me to learn and practice my PHP, HTML, CSS, JavaScript, and Database management skills.
 
