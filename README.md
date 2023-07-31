@@ -60,9 +60,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-[Thies Bergenthal] - [thiesmk2@gmail.com] - [push.42]
+Thies Bergenthal - thiesmk2@gmail.com - Discord: push.42
 
-Project Link: [https://github.com/your_username/FiveM-Admin-Dashboard](https://github.com/your_username/FiveM-Admin-Dashboard)
+Project Link: [https://github.com/reverseHaze/FiveM-Admin-Dashboard](https://github.com/reverseHaze/FiveM-Admin-Dashboard)
 
 ---
 
