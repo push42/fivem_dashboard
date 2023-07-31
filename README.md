@@ -34,7 +34,7 @@ The project is developed with PHP, HTML, CSS, JavaScript, and uses a MySQL datab
 
 1. Clone the repository to your local machine.
 2. Import the provided SQL file to your MySQL server.
-3. Update the `config.php` file with your specific server details and Trackyserver API key.
+3. Update the database connection inside the `.php` files with your specific server details and Trackyserver API key.
 4. Host the files on your server, accessible through your domain or IP address.
 5. You're all set! Visit the dashboard through your chosen access point.
 
