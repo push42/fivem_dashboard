@@ -4,6 +4,9 @@
   <img src="https://i.ibb.co/r7X8n1q/banner0101.gif" alt="Admin Dashboard Logo"/>
 </p>
 
+[![Watch the video](https://i.ibb.co/sCCvBTr/preview.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
+
+
 > This project is a user-friendly, robust, and comprehensive admin dashboard for FiveM servers, designed with ❤️ by a dedicated FiveM enthusiast. Developed to polish my JavaScript and Database management skills, the dashboard aims to provide administrators with an insightful glance into the operations of their server. Your contributions are highly welcomed! Feel free to fork, use, and improve the project. 
 
 ## Features
