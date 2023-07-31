@@ -3,7 +3,8 @@
 
 ## Preview
 
-Watch a small preview video
+Watch a small preview video:
+
 [![Watch the video](https://i.ibb.co/sCCvBTr/preview.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
 
 
