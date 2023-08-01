@@ -57,20 +57,6 @@ if (isset($_SESSION["avatar_url"])) {
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//              O N L I N E    U S E R    P A N E L
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-$con = mysqli_connect("localhost", "root", "", "webdev");
-    if (!$con) {
-        die("Verbindung Fehlgeschlagen: " . mysqli_connect_error());
-    }
-$result = mysqli_query($con, "SELECT COUNT(*) as count FROM online_users");
-$row = mysqli_fetch_assoc($result);
-$online_users_count = $row['count'];
-mysqli_close($con);
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
 //              D A T A B A S E    F O R    F I V E M    (I recommend to use 2 different databases for better organization)
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -380,8 +366,8 @@ function totalAccounts($conn) {
     </div>
 </div>
 
-<div class="online-users-count">
-    <span class="online-badge"></span>Teamler eingeloggt: <?php echo $online_users_count; ?>
+<div class="online-users-count" id="onlineUsersCount">
+    <span class="online-badge"></span>Teamler eingeloggt: <span id="onlineUsersCounter"></span>
 </div>
 
 <div class="server-status-container">
@@ -513,13 +499,11 @@ function totalAccounts($conn) {
         }
     ?>
 </div>
-</div>
 
     <div class="logo-imagetext2"></div>
     <div class="spacer01"></div>
-    <div class="container" id="rvdatenbank">
 
-
+<div class="container" id="rvdatenbank">
 <div class="users-section">
     <h2><i class="fa-solid fa-user fontawesomeicons" style="color: #007bff;"></i>Registrierte Spieler</h2>
     <!-- Add search box for users -->
@@ -1421,9 +1405,11 @@ function totalAccounts($conn) {
         } ?>
     </div>
 </div>
-
 </div>
+
+
 <script>
+
 // **************************************** Gameserver Spielerliste ****************************************
 // Get references to the elements
 const playerListButton = document.getElementById('playerListButton');
@@ -2383,6 +2369,32 @@ setInterval(function() {
     // You can handle the response here if needed
   });
 }, 5000); // Every 5 seconds
+
+
+// Update Online Staffmember every 5 seconds
+function updateOnlineUsers() {
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+
+        // Configure the request
+        xhr.open('GET', 'get_online_users.php', true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                // Update the online users count on the page
+                document.getElementById('onlineUsersCounter').innerText = this.responseText;
+            }
+        }
+
+        // Send the request
+        xhr.send();
+    }
+
+    // Call the function once to initialize
+    updateOnlineUsers();
+
+    // Set an interval to call the function every 5 seconds
+    setInterval(updateOnlineUsers, 5000);
   </script>
   <script type="text/javascript" src="js/serverrestart.js"></script>
 </body>
