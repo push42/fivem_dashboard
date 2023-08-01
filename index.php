@@ -1,8 +1,10 @@
 <?php
 session_start();
+// Start of the dashboard
+// Here you can for example the gather_info.php to track data from people visitng the dashboard
+// If you plan on using it, you may need to include a cookie banner depending on where you life
 include "chat_functions.php";
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Check if the user is not logged in, then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
@@ -19,11 +21,20 @@ if (isset($_POST["refresh"])) {
     echo $count;
     exit(); // Exit to prevent further execution of the script
 }
-
-
-
+// Fetch the avatar_url from the $_SESSION array or use a default avatar URL
+if (isset($_SESSION["avatar_url"])) {
+    $avatar_url = $_SESSION["avatar_url"];
+} else {
+    // Use a default avatar URL if avatar_url is not set
+    $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
+}
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//              D A T A B A S E    F O R    F I V E M    (I recommend to use 2 different databases for better organization)
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Change this into your Database details that hold your FiveM stuff
-// Start dashboard.php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -34,49 +45,79 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Verbindung fehlgeschlagen: " . $conn->connect_error);
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//              D A T A B A S E    F O R    T H E    D A S H B O A R D    (For the user accounts and more)             
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$servername_webdev = "localhost";
+$username_webdev = "root";
+$password_webdev = "";
+$database_webdev = "webdev";
 
+$conn_webdev = new mysqli(
+    $servername_webdev,
+    $username_webdev,
+    $password_webdev,
+    $database_webdev
+);
 
-
+if ($conn_webdev->connect_error) {
+    die("Connection to webdev failed: " . $conn_webdev->connect_error);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Here i define the database table names, if you use different database tables you need to change them here, also the names of the rows you want to read out
 // You can also use this to just read out everything:
 //   $sqlUsers =
 //      "SELECT * FROM users";
 //   $resultUsers = $conn->query($sqlUsers);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $sqlUsers =
     "SELECT identifier, firstname, lastname, job, job_grade, accounts, `group` FROM users";
 $resultUsers = $conn->query($sqlUsers);
-
+//
 $sqlOwnedVehicles = "SELECT * FROM owned_vehicles";
 $resultOwnedVehicles = $conn->query($sqlOwnedVehicles);
-
+//
 $sqlCodemFishing = "SELECT * FROM `codem-fishing`";
 $resultCodemFishing = $conn->query($sqlCodemFishing);
-
+//
 $sqlCodemCrafting = "SELECT * FROM `codem-craft`";
 $resultCodemCrafting = $conn->query($sqlCodemCrafting);
-
+//
 $sqlCompanyMoney = "SELECT * FROM company_money";
 $resultCompanyMoney = $conn->query($sqlCompanyMoney);
-
+//
 $sqlLiveCall = "SELECT * FROM codem_livecall";
 $resultLiveCall = $conn->query($sqlLiveCall);
-
+//
 $sqlGeparkteAutos = "SELECT * FROM vehicle_parking";
 $resultGeparkteAutos = $conn->query($sqlGeparkteAutos);
-
+//
 $sqlGangStashes = "SELECT * FROM t1ger_gangs";
 $resultGangStashes = $conn->query($sqlGangStashes);
-
+//
 $sqlPlayerInventory = "SELECT * FROM ox_inventory";
 $resultPlayerInventory = $conn->query($sqlPlayerInventory);
-
+//
 $sqlSpeedCams = "SELECT * FROM speedcams_profit";
 $resultSpeedCams = $conn->query($sqlSpeedCams);
-
+//
 $sqlTigerMechanic = "SELECT * FROM t1ger_mechanic";
 $resultTigerMechanic = $conn->query($sqlTigerMechanic);
-
-// Server Status
+//
+$sqlOKOKBilling = "SELECT * FROM okokbilling";
+$resultOKOKBilling = $conn->query($sqlOKOKBilling);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                S E R V E R S T A T U S    &     O N L I N E   P L A Y E R S 
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Here you need to set your server_id from trackyserver.com, i use it to fetch the server status, online players & voting
 $server_id = "YOUR_SERVER_ID_FROM_TRACKYSERVER.COM";
 $url = "https://api.trackyserver.com/widget/index.php?id=" . $server_id;
 $ch = curl_init();
@@ -84,25 +125,33 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_URL, $url);
 $result = json_decode(curl_exec($ch), true);
 curl_close($ch);
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                  I C O N S    F O R    T H E    A C C O U N T S    I N    T H E    U S E R    T A B L E
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $accountIcons = [
     "bank" => '<i class="fas fa-piggy-bank"></i>',
     "black_money" => '<i class="fas fa-money-bill-alt"></i>',
     "cosmo" => '<i class="fas fa-globe"></i>',
     "money" => '<i class="fas fa-money-bill"></i>',
 ];
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function formatIcon($account)
 {
     global $accountIcons;
     return $accountIcons[$account];
 }
-
+//
 function formatAccountValue($account, $value)
 {
     return formatIcon($account) . ": " . $value;
 }
-
+//
 function formatAccounts($jsonString)
 {
     // Decode the JSON string into an associative array
@@ -120,30 +169,37 @@ function formatAccounts($jsonString)
     return $formattedAccounts;
 }
 
-// Fetch the avatar_url from the $_SESSION array or use a default avatar URL
-if (isset($_SESSION["avatar_url"])) {
-    $avatar_url = $_SESSION["avatar_url"];
-} else {
-    // Use a default avatar URL if avatar_url is not set
-    $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
+function totalAccounts($conn) {
+    // Get users
+    $resultUsers = $conn->query("SELECT accounts FROM users");
+
+    $totalAccounts = [
+        "bank" => 0,
+        "black_money" => 0,
+        "cosmo" => 0,
+        "money" => 0,
+    ];
+
+    // Loop through each user
+    while ($row = $resultUsers->fetch_assoc()) {
+        // Decode the JSON string into an associative array
+        $accounts = json_decode($row["accounts"], true);
+
+        // Add the account values to the total
+        foreach ($accounts as $account => $value) {
+            $totalAccounts[$account] += $value;
+        }
+    }
+
+    return $totalAccounts;
 }
 
-$servername_webdev = "localhost";
-$username_webdev = "root";
-$password_webdev = "";
-$database_webdev = "webdev";
-
-$conn_webdev = new mysqli(
-    $servername_webdev,
-    $username_webdev,
-    $password_webdev,
-    $database_webdev
-);
-
-// Check the connection
-if ($conn_webdev->connect_error) {
-    die("Connection to webdev failed: " . $conn_webdev->connect_error);
-}
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                  S T A R T    O F   H T M L
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
 <!DOCTYPE html>
 <html>
@@ -165,96 +221,95 @@ if ($conn_webdev->connect_error) {
     <title>Rogue-V | Dashboard</title>
 </head>
 
-
-            <!-- Team Section -->
-            <section class="page-section bg-dark-lighter" id="team">
-                <div class="container relative">
-                                        
-                    <!-- Team Grid -->
-                    <div class="team-grid">
-                        <!-- Navigation -->
-                        <a href="https://roguev.de" target="_blank">
-                        <div class="team-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
-                            <div class="team-item-descr dark">
-                                <div class="team-item-name">
-                                <i class="fa-solid fa-globe  todoicon"></i>Homepage
-                                </div>
-                                <div class="team-item-role glow-text2">
-                                    Gelange zurück auf die Hauptseite von Rogue-V
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        <!-- End Navigation -->
-
-                        <!-- Navigation -->
-                        <a href="https://roguev.de" target="_blank">
-                        <div class="team-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
-                            <div class="team-item-descr dark">
-                                <div class="team-item-name">
-                                <i class="fa-solid fa-users  todoicon"></i>Forum
-                                </div>
-                                <div class="team-item-role glow-text2">
-                                    Gelange zu unserem Forum
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        <!-- End Navigation -->
-                                              
-                        <!-- Navigation -->
-                        <a href="https://roguev.de" target="_blank">
-                        <div class="team-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
-                            <div class="team-item-descr dark">
-                                <div class="team-item-name">
-                                <i class="fa-solid fa-server  todoicon"></i>txAdmin
-                                </div>
-                                <div class="team-item-role glow-text2">
-                                    Gelange auf das txAdmin Dashboard
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        <!-- End Navigation -->
-
-                        <!-- Navigation -->
-                        <a href="#rvdatenbank">
-                        <div class="team-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
-                            <div class="team-item-descr dark">
-                                <div class="team-item-name">
-                                <i class="fa-solid fa-database todoicon"></i>Datenbank
-                                </div>
-                                <div class="team-item-role glow-text2">
-                                    Siehe dir die wichtigsten Einträge in der Datenbank an
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        <!-- End Navigation -->
-                        <!-- Navigation -->
-                        <a href="https://roguev.de" target="_blank">
-                        <div class="team-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
-                            <div class="team-item-descr dark">
-                                <div class="team-item-name">
-                                <i class="fa-solid fa-ticket  todoicon"></i>Ticketsystem
-                                </div>
-                                <div class="team-item-role glow-text2">
-                                    Siehe dir alle Tickets an, bearbeite oder schließe Sie
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        <!-- End Navigation -->                        
+<!-- Navigation -->
+<section class="page-section bg-dark-lighter" id="navigation">
+    <div class="container relative">
+                            
+        <!-- Navigation grid -->
+        <div class="navigation-grid">
+            <!-- Navigation -->
+            <a href="https://roguev.de" target="_blank">
+            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
+                <div class="navigation-item-descr dark">
+                    <div class="navigation-item-name">
+                    <i class="fa-solid fa-globe  todoicon"></i>Homepage
                     </div>
-                    <!-- End Team Grid -->
+                    <div class="navigation-item-role glow-text2">
+                        Gelange zurück auf die Hauptseite von Rogue-V
+                    </div>
                 </div>
-            </section>
-            <!-- End Team Section -->
+            </div>
+            </a>
+            <!-- End Navigation -->
 
+            <!-- Navigation -->
+            <a href="https://roguev.de" target="_blank">
+            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
+                <div class="navigation-item-descr dark">
+                    <div class="navigation-item-name">
+                    <i class="fa-solid fa-users  todoicon"></i>Forum
+                    </div>
+                    <div class="navigation-item-role glow-text2">
+                        Gelange zu unserem Forum
+                    </div>
+                </div>
+            </div>
+            </a>
+            <!-- End Navigation -->
+                                    
+            <!-- Navigation -->
+            <a href="https://roguev.de" target="_blank">
+            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
+                <div class="navigation-item-descr dark">
+                    <div class="navigation-item-name">
+                    <i class="fa-solid fa-server  todoicon"></i>txAdmin
+                    </div>
+                    <div class="navigation-item-role glow-text2">
+                        Gelange auf das txAdmin Dashboard
+                    </div>
+                </div>
+            </div>
+            </a>
+            <!-- End Navigation -->
+
+            <!-- Navigation -->
+            <a href="#rvdatenbank">
+            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
+                <div class="navigation-item-descr dark">
+                    <div class="navigation-item-name">
+                    <i class="fa-solid fa-database todoicon"></i>Datenbank
+                    </div>
+                    <div class="navigation-item-role glow-text2">
+                        Siehe dir die wichtigsten Einträge in der Datenbank an
+                    </div>
+                </div>
+            </div>
+            </a>
+            <!-- End Navigation -->
+            <!-- Navigation -->
+            <a href="https://roguev.de" target="_blank">
+            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
+                <div class="navigation-item-descr dark">
+                    <div class="navigation-item-name">
+                    <i class="fa-solid fa-ticket  todoicon"></i>Ticketsystem
+                    </div>
+                    <div class="navigation-item-role glow-text2">
+                        Siehe dir alle Tickets an, bearbeite oder schließe Sie
+                    </div>
+                </div>
+            </div>
+            </a>
+            <!-- End Navigation -->                        
+        </div>
+        <!-- End navigation Grid -->
+    </div>
+</section>
+<!-- End navigation Section -->
 
 <header class="image-header">
         <div class="header-content">
             <h1><img src="https://i.ibb.co/smLg902/Untitled-1.gif" alt="Logo" class="logo-image">ROGUEV - DASHBOARD</h1>
+            <div class="subheader-text">Willkommen im Rogue-V Dashboard! Behalte die Wirtschaft sowie weitere wichtige Datenbankeinträge im Blick.</div>
             <div class="logo-image-text">made with<i class="fa-solid fa-heart fa-beat icon-image-text" style="color: #fc5458;"></i>by push.42</div>
         </div>
 </header>
@@ -262,8 +317,7 @@ if ($conn_webdev->connect_error) {
 <body>
 <div id="particles-js"></div>
    
-
-
+<section class="user-serverpanel">
     <div class="server-status-container2">
     <div class="header-info-right">
         <!-- Display the user's avatar using the $avatar_url variable -->
@@ -295,17 +349,17 @@ if ($conn_webdev->connect_error) {
     </div>
 </div>
 
-    <div class="server-status-container">
-        <div class="server-status-section">
-            <h2><i class="fas fa-server gameservericon" style="color: #0052ea;"></i>FiveM Serverstatus</h2>
-        </div>
+<div class="server-status-container">
+    <div class="server-status-section">
+        <h2><i class="fas fa-server gameservericon" style="color: #0052ea;"></i>FiveM Serverstatus</h2>
+    </div>
         <div class="server-status">
             <div class="status-circle" id="serverStatusCircle"></div>
             <span id="serverStatusText">Serverstatus: Fetching...</span>
         </div>
         <div class="countdown-timer-t">Nächster Neustart:</div>
             <div id="countdown-timer"></div></br>
-        <button class="player-list-button" id="playerListButton">Verbundene Spieler</button>
+            <button class="player-list-button" id="playerListButton">Verbundene Spieler</button>
                 <div class="player-list-modal" id="playerListModal">
                     <h2>Verbundene Spieler</h2>
                     <?php if ($result) {
@@ -327,6 +381,7 @@ if ($conn_webdev->connect_error) {
     </div>
     </div>
 </div>
+</section>
 
 <div class="info-box">
     <h2>Dashboard | Informationen</h2>
@@ -334,7 +389,7 @@ if ($conn_webdev->connect_error) {
     <p>Unser Server befindet sich derzeit noch im Umbau und ist für die Öffentlichkeit offline. Die Änderungen, die wir vornehmen, werden einige Zeit in Anspruch nehmen, da wir nicht nur den Servernamen und das Logo ändern, sondern auch das gesamte Konzept des Servers.</p>
     <p>Du kannst dich weiterhin einloggen und die neuesten Informationen abrufen, während wir an der Verbesserung des Servers arbeiten. Wir sind begeistert von den kommenden Änderungen und hoffen, dass Du sie genauso lieben wirst wie wir!</p>
     <p>Vielen Dank, dass Du Teil der ROGUEV-Community bist!</p>
-    <p>Dein Entwickler-Team von ROGUEV</p>
+    <p>Dein Entwickler-navigation von ROGUEV</p>
 </div>
 
 <div class="title2"><i class="fa-solid fa-crown title2icon"></i>Hall of Fame</div>
@@ -355,7 +410,7 @@ if ($conn_webdev->connect_error) {
   <div class="announcements">
     <marquee behavior="scroll" direction="left">
       <!-- Announcement messages go here -->
-      <span>📢 Willkommen im Teamchat, bitte haltet euch auch hier an die Regeln und verhaltet euch dementsprechend.</span>
+      <span>📢 Willkommen im navigationchat, bitte haltet euch auch hier an die Regeln und verhaltet euch dementsprechend.</span>
       <span><i class="fa-brands fa-discord title3icon"></i>dsc.gg/roguev</span>
       <span><i class="fa-solid fa-code title3icon"></i>Chat entwickelt von push42</span>
       <span><i class="fa-solid fa-wrench title3icon"></i>Der Chat bekommt regelmäßige Updates</span>
@@ -400,6 +455,29 @@ if ($conn_webdev->connect_error) {
     <button id="add-task-button">Hinzufügen</button>
   </div>
   <ul id="task-list"></ul>
+</div>
+
+<div class="wirtschafts-header"><i class="fa-solid fa-chart-simple fa-bounce wheadericon"></i>Wirtschaftsübersicht</div>
+<div class="wirtschafts-subheader">Erhalte einen Überblick über die Wirtschaft auf Rogue-V</div>
+<div class="wirtschafts-container">
+    <?php 
+        $totalAccounts = totalAccounts($conn);
+        $icons = [
+            "bank" => '<i class="fas fa-building-columns box-icon"></i>',
+            "black_money" => '<i class="fas fa-sack-dollar box-icon"></i>',
+            "cosmo" => '<i class="fas fa-bitcoin-sign box-icon"></i>',
+            "money" => '<i class="fas fa-money-bill-1 box-icon"></i>',
+        ];
+
+        foreach ($totalAccounts as $account => $total) {
+            echo "<div class=\"box\">";
+            echo $icons[$account];
+            echo "<p class=\"box-text\">" . ucfirst($account) . "</p>";
+            echo "<p class=\"box-total\">Total: " . $total . "</p>";
+            echo "</div>";
+        }
+    ?>
+</div>
 </div>
 
     <div class="logo-imagetext2"></div>
@@ -1279,6 +1357,36 @@ if ($conn_webdev->connect_error) {
         } ?>
     </div>
 </div>
+
+<div class="okokbilling-section">
+    <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #0052ea;"></i>Rechnungsübersicht</h2>
+    <!-- Add search box for owned vehicles -->
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input type="text" id="search-okokbilling" placeholder="Suche nach einer Rechnung...">
+    </div>
+    <!-- Wrap the table in a scrollable container -->
+    <div class="table-container">
+        <?php if ($resultOKOKBilling->num_rows > 0) {
+            echo '<table id="okokbilling-table">';
+            echo "<tr><th>Rechnungs Nr.</th><th>Empfänger</th><th>Aussteller</th><th>Summe</th><th>Zinsen</th><th>Status/r</th></tr>";
+            while ($row = $resultOKOKBilling->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["ref_id"] . "</td>";
+                echo "<td>" . $row["receiver_name"] . "</td>";
+                echo "<td>" . $row["author_name"] . "</td>";
+                echo "<td>" . $row["invoice_value"] . "</td>";
+                echo "<td>" . $row["fees_amount"] . "</td>";
+                echo "<td>" . $row["status"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        } ?>
+    </div>
+</div>
+
 </div>
 <script>
 // **************************************** Gameserver Spielerliste ****************************************
@@ -1636,6 +1744,35 @@ function searchTigerMechanic() {
         }
     }
 }
+
+function searchOKOKBilling() {
+    const input = document.getElementById("search-okokbilling");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("okokbilling-table");
+    const rows = table.getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].getElementsByTagName("td");
+        let found = false;
+
+        for (let j = 0; j < columns.length; j++) {
+            const cell = columns[j];
+            if (cell) {
+                const txtValue = cell.textContent || cell.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
 // Add event listeners to the search boxes
 const searchInputUsers = document.getElementById("search-users");
 searchInputUsers.addEventListener("keyup", searchUsers);
@@ -1669,6 +1806,9 @@ searchInputSpeedCams.addEventListener("keyup", searchSpeedCams);
 
 const searchInputTigerMechanic = document.getElementById("search-mechanic");
 searchInputTigerMechanic.addEventListener("keyup", searchSpeedCams);
+
+const searchInputOKOKBilling = document.getElementById("search-okokbilling");
+searchInputOKOKBilling.addEventListener("keyup", searchOKOKBilling);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2,9 +2,10 @@
 @import url('chatbox.css');
 @import url('infopanel.css');
 @import url('server_status.css');
-@import url('teamsection.css');
+@import url('navigation.css');
 @import url('todo.css');
 @import url('user_control.css');
+@import url('ec_overview.css');
 
 
 ::-webkit-scrollbar {
@@ -94,14 +95,14 @@ tr:nth-child(even) {
     outline: none;
     color: #fff;
 }
-.users-section,.owned-vehicles-section,.codem-fishing-section,.codem-crafting-section,.company-money-section,.live-call-section,.parked-vehicles-section,.gangstashes-section,.inventory-section,.speedcams-section,.mechanic-section {
+.users-section,.owned-vehicles-section,.codem-fishing-section,.codem-crafting-section,.company-money-section,.live-call-section,.parked-vehicles-section,.gangstashes-section,.inventory-section,.speedcams-section,.mechanic-section, .okokbilling-section {
     background: rgb(3,4,22);
     background: radial-gradient(circle, rgba(3,4,22,1) 0%, rgba(27,27,27,1) 100%);
     padding: 20px;
     border-radius: 25px;
     border: 5px solid rgba(2, 2, 2, 0.150);
 }
-.users-section h2,.owned-vehicles-section h2,.codem-fishing-section h2,.codem-crafting-section h2,.company-money-section h2,.live-call-section h2,.parked-vehicles-section h2,.gangstashes-section h2,.inventory-section h2,.speedcams-section h2,.mechanic-section h2 {
+.users-section h2,.owned-vehicles-section h2,.codem-fishing-section h2,.codem-crafting-section h2,.company-money-section h2,.live-call-section h2,.parked-vehicles-section h2,.gangstashes-section h2,.inventory-section h2,.speedcams-section h2,.mechanic-section h2, .okokbilling-section h2 {
     margin-top: 0;
     margin-bottom: 20px;
     color: #fff;
@@ -110,11 +111,11 @@ tr:nth-child(even) {
 .fontawesomeicons {
     margin-right: 8px;
 }
-.users-section table,.owned-vehicles-section table,.codem-fishing-section table,.codem-crafting-section table,.company-money-section table,.live-call-section table,.parked-vehicles-section table,.gangstashes-section table,.inventory-section table,.speedcams-section table,.mechanic-section table {
+.users-section table,.owned-vehicles-section table,.codem-fishing-section table,.codem-crafting-section table,.company-money-section table,.live-call-section table,.parked-vehicles-section table,.gangstashes-section table,.inventory-section table,.speedcams-section table,.mechanic-section table, .okokbilling-section table {
     width: 100%;
     white-space: nowrap;
 }
-.users-section td,.owned-vehicles-section td,.codem-fishing-section td,.codem-crafting-section td,.company-money-section td,.live-call-section td,.parked-vehicles-section td,.gangstashes-section td,.inventory-section td,.speedcams-section td,.mechanic-section td {
+.users-section td,.owned-vehicles-section td,.codem-fishing-section td,.codem-crafting-section td,.company-money-section td,.live-call-section td,.parked-vehicles-section td,.gangstashes-section td,.inventory-section td,.speedcams-section td,.mechanic-section td, .okokbilling-section td {
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -191,9 +192,6 @@ tr:nth-child(even) {
     font-weight: 700;
 }
 
-.image-header{
-    position: relative;
-}
 .subtext-icon {
     margin-right: 3px
 }
@@ -447,7 +445,33 @@ margin-left: 10px;
   .server-status-container2 {
     animation: pulsate 2s infinite;
   }
+
+
+
+
+
+.image-header{
+    position: relative;
+    display: flow-root;
+}
   
+.subheader-text {
+    font-family: Montserrat, sans-serif;
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+}
+
+.header-content {
+    padding: 25px;
+    margin-top: -35px;
+}
+
+.header-content h1 {
+    margin-bottom: -5px;
+}
+
+
 
 
 

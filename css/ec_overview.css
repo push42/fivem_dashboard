@@ -1,0 +1,78 @@
+
+.wirtschafts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 3px 0 0 -1px;
+    text-align: center;
+    font-size: 0;
+    word-spacing: 0;
+    color: #aaa;
+    font-family: 'Montserrat', sans-serif;
+    top: 2%;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 270px;
+    margin: 20px 0 0 1px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, #0a0a0a, #1b1b1b);
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box-icon {
+    font-size: 32px; /* Change this to increase or decrease the icon size */
+    color: #007bff;
+}
+
+.box-text {
+    margin-bottom: 3.2px;
+    font-size: 14px; /* Change this to increase or decrease the text size */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #007bff;
+}
+
+.box-total {
+    margin-top: -5px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #bbb;
+}
+
+
+
+.wirtschafts-header {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.wirtschafts-subheader{
+    color: #888;
+    font-size: 11px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 500;
+    margin-top: -4.75px;
+}
+
+.wheadericon {
+    margin-right: 11.5px;
+    color: #007bff;
+}
