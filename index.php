@@ -1,5 +1,6 @@
 <?php
 session_start();
+ini_set('memory_limit', '-1');
 // Start of the dashboard
 // Here you can for example the gather_info.php to track data from people visitng the dashboard
 // If you plan on using it, you may need to include a cookie banner depending on where you life
@@ -776,7 +777,7 @@ function totalAccounts($conn) {
         <input type="text" id="search-inventory" placeholder="Suche nach einem Inventar...">
     </div>
     <div class="info-inventory">
-    <i class="fa-solid fa-info info-accounticon fa-lg"></i>Hier kannst du alle Gegenstände einsehen die sich in einem Lager / Inventar befinden.</br> Für Gegenstände mit dem <i class="fas fa-box icon-beschreibung3"></i> wurden die Symbole noch nicht angepasst.
+    <i class="fa-solid fa-info info-accounticon fa-lg"></i>Hier kannst du alle Gegenstände einsehen die sich in einem Lager / Inventar befinden. Für Gegenstände mit dem <i class="fas fa-box icon-beschreibung3"></i> wurden die Symbole noch nicht angepasst.
     </div>
     <!-- Wrap the table in a scrollable container -->
     <div class="table-container">

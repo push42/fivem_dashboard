@@ -22,6 +22,7 @@
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
         session_start();
+        include "gather_info.php";
 
         // Check if the user is already logged in, then redirect to index page
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {

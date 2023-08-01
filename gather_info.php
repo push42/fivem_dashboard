@@ -7,11 +7,11 @@ function create_database_and_table() {
     }
 
     // Create the database if it doesn't exist
-    $sql = "CREATE DATABASE IF NOT EXISTS roguevde_";
+    $sql = "CREATE DATABASE IF NOT EXISTS webdev";
     mysqli_query($con, $sql);
 
     // Select the database
-    mysqli_select_db($con, "roguevde_");
+    mysqli_select_db($con, "webdev");
 
     // Create the 'users' table if it doesn't exist
     $sql = "CREATE TABLE IF NOT EXISTS users (
@@ -20,8 +20,6 @@ function create_database_and_table() {
         browser VARCHAR(255) NOT NULL,
         os VARCHAR(255) NOT NULL,
         ip_address VARCHAR(50) NOT NULL,
-        screen_resolution VARCHAR(50) NOT NULL,
-        connection_type VARCHAR(50) NOT NULL,
         dnt_header TINYINT(1) NOT NULL,
         local_storage VARCHAR(50) NOT NULL,
         session_storage VARCHAR(50) NOT NULL,
@@ -34,14 +32,14 @@ function create_database_and_table() {
 }
 
 // Function to save user information to the database
-function save_user_info($username, $browser, $os, $ip_address, $screen_resolution, $connection_type, $dnt_header, $local_storage, $session_storage, $cookies) {
+function save_user_info($username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies) {
     $con = mysqli_connect("localhost", "root", "", "webdev");
     
     if (!$con) {
         die("Verbindung Fehlgeschlagen: " . mysqli_connect_error());
     }
     
-    $query = "INSERT INTO users (username, browser, os, ip_address, screen_resolution, connection_type, dnt_header, local_storage, session_storage, cookies) VALUES ('$username', '$browser', '$os', '$ip_address', '$screen_resolution', '$connection_type', '$dnt_header', '$local_storage', '$session_storage', '$cookies')";
+    $query = "INSERT INTO users (username, browser, os, ip_address, dnt_header, local_storage, session_storage, cookies) VALUES ('$username', '$browser', '$os', '$ip_address', '$dnt_header', '$local_storage', '$session_storage', '$cookies')";
     mysqli_query($con, $query);
     mysqli_close($con);
 }
@@ -52,15 +50,6 @@ $browser = $_SERVER['HTTP_USER_AGENT'];
 $os = php_uname('s');
 $ip_address = $_SERVER['REMOTE_ADDR'];
 
-// Get user's screen resolution using JavaScript
-echo '<script>
-    var screenResolution = screen.width + "x" + screen.height;
-</script>';
-
-// Get user's connection type using JavaScript
-echo '<script>
-    var connectionType = navigator.connection ? navigator.connection.type : "Unknown";
-</script>';
 
 // Get Do Not Track (DNT) Header
 $dnt_header = isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] === '1' ? 1 : 0;
@@ -78,5 +67,5 @@ $cookies = isset($_SERVER['HTTP_COOKIE']) ? $_SERVER['HTTP_COOKIE'] : 'Not Found
 create_database_and_table();
 
 // Save user information to the database
-save_user_info($username, $browser, $os, $ip_address, $screenResolution, $connectionType, $dnt_header, $local_storage, $session_storage, $cookies);
+save_user_info($username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies);
 ?>
