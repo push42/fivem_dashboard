@@ -3,12 +3,16 @@
 
 ## Preview
 
-Watch a small preview video:
-
-[![Watch the video](https://i.ibb.co/sCCvBTr/preview.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
-
+[![Watch the video](https://i.ibb.co/4PV6fsS/preview1.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
+[![Watch the video](https://i.ibb.co/zfTYpF9/preview2.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
+[![Watch the video](https://i.ibb.co/xDdZfLh/preview3.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
+[![Watch the video](https://i.ibb.co/g94f9qv/preview4.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
 
 > This project is a user-friendly, robust, and comprehensive admin dashboard for FiveM servers, designed with ❤️ by a dedicated FiveM enthusiast. Developed to polish my JavaScript and Database management skills, the dashboard aims to provide administrators with an insightful glance into the operations of their server. Your contributions are highly welcomed! Feel free to fork, use, and improve the project. 
+
+## Early Stages
+
+This project is in it's early stages and doesn't offer that much yet, i will constantly work on updating it and add new features!
 
 ## Features
 
