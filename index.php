@@ -27,6 +27,7 @@ if (isset($_SESSION["avatar_url"])) {
 } else {
     // Use a default avatar URL if avatar_url is not set
     $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
+    $avatar_url2 = "img/system_avatar.png";
 }
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,7 +215,7 @@ function totalAccounts($conn) {
     <script src="https://kit.fontawesome.com/9d1f4cdd15.js" crossorigin="anonymous"></script>
     <script src="js/todo.js"></script>
     <script type="text/javascript" src="js/chatstatistics.js"></script>
-    <script type="text/javascript" src="js/cb_scripts.js"></script>
+    <script type="text/javascript" src="js/index.jsx"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <audio id="mySound" src="audio/button-click2.mp3" style="display:none"></audio>
     <audio id="mySound2" src="audio/button-click.mp3" style="display:none"></audio>
@@ -225,6 +226,8 @@ function totalAccounts($conn) {
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Extras -->
+    <link rel="manifest" href="manifest.json">
     <title>Rogue-V | Dashboard</title>
 </head>
 
@@ -341,7 +344,7 @@ function totalAccounts($conn) {
 
 <div class="server-status-container">
     <div class="server-status-section">
-        <h2><i class="fas fa-server gameservericon" style="color: #0052ea;"></i>FiveM Serverstatus</h2>
+        <h2><i class="fas fa-server gameservericon" style="color: #007bff;"></i>FiveM Serverstatus</h2>
     </div>
         <div class="server-status">
             <div class="status-circle" id="serverStatusCircle"></div>
@@ -476,7 +479,7 @@ function totalAccounts($conn) {
 
 
 <div class="users-section">
-    <h2><i class="fa-solid fa-user fontawesomeicons" style="color: #0052ea;"></i>Registrierte Spieler</h2>
+    <h2><i class="fa-solid fa-user fontawesomeicons" style="color: #007bff;"></i>Registrierte Spieler</h2>
     <!-- Add search box for users -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -529,13 +532,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="owned-vehicles-section">
-    <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #0052ea;"></i>Fahrzeuge von Usern</h2>
+    <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #007bff;"></i>Fahrzeuge von Usern</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -557,13 +560,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="parked-vehicles-section">
-    <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #0052ea;"></i>Ausgeparkte Fahrzeuge</h2>
+    <h2><i class="fa-solid fa-car fontawesomeicons" style="color: #007bff;"></i>Ausgeparkte Fahrzeuge</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -586,13 +589,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="codem-fishing-section">
-    <h2><i class="fa-solid fa-fish fontawesomeicons" style="color: #0052ea;"></i>Angeln</h2>
+    <h2><i class="fa-solid fa-fish fontawesomeicons" style="color: #007bff;"></i>Angeln</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -613,13 +616,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="codem-crafting-section">
-    <h2><i class="fa-solid fa-hammer fontawesomeicons" style="color: #0052ea;"></i>Crafting</h2>
+    <h2><i class="fa-solid fa-hammer fontawesomeicons" style="color: #007bff;"></i>Crafting</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -639,13 +642,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="company-money-section">
-    <h2><i class="fa-solid fa-money-check-dollar fontawesomeicons" style="color: #0052ea;"></i>Firmenkonten</h2>
+    <h2><i class="fa-solid fa-money-check-dollar fontawesomeicons" style="color: #007bff;"></i>Firmenkonten</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -664,13 +667,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="live-call-section">
-    <h2><i class="fa-solid fa-headset fontawesomeicons" style="color: #0052ea;"></i>Livesupport (über ESC)</h2>
+    <h2><i class="fa-solid fa-headset fontawesomeicons" style="color: #007bff;"></i>Livesupport (über ESC)</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -702,13 +705,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="gangstashes-section">
-    <h2><i class="fa-solid fa-hands-asl-interpreting fontawesomeicons" style="color: #0052ea;"></i>Gangübersicht</h2>
+    <h2><i class="fa-solid fa-hands-asl-interpreting fontawesomeicons" style="color: #007bff;"></i>Gangübersicht</h2>
     <!-- Add search box for users -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -733,14 +736,14 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 
 <div class="inventory-section">
-    <h2><i class="fa-solid fa-box-open fontawesomeicons" style="color: #0052ea;"></i>Inventare</h2>
+    <h2><i class="fa-solid fa-box-open fontawesomeicons" style="color: #007bff;"></i>Inventare</h2>
     <!-- Add search box for users -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -1285,13 +1288,13 @@ function totalAccounts($conn) {
         }
         echo "</table>";
     } else {
-        echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+        echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
     } ?>
     </div>
 </div>
 
 <div class="speedcams-section">
-    <h2><i class="fa-solid fa-video fontawesomeicons" style="color: #0052ea;"></i>Blitzer</h2>
+    <h2><i class="fa-solid fa-video fontawesomeicons" style="color: #007bff;"></i>Blitzer</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -1314,13 +1317,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="mechanic-section">
-    <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #0052ea;"></i>Mechaniker</h2>
+    <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #007bff;"></i>Mechaniker</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -1330,7 +1333,7 @@ function totalAccounts($conn) {
     <div class="table-container">
         <?php if ($resultTigerMechanic->num_rows > 0) {
             echo '<table id="mechanic-table">';
-            echo "<tr><th>Identifier</th><th>ID</th><th>Name</th><th>Kontostand</th><th>Angestellte</th><th>Lager/r</th></tr>";
+            echo "<tr><th>Identifier</th><th>ID</th><th>Name</th><th>Kontostand</th><th>Angestellte</th><th>Lager</th></tr>";
             while ($row = $resultTigerMechanic->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row["identifier"] . "</td>";
@@ -1343,13 +1346,13 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
 
 <div class="okokbilling-section">
-    <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #0052ea;"></i>Rechnungsübersicht</h2>
+    <h2><i class="fa-solid fa-screwdriver fontawesomeicons" style="color: #007bff;"></i>Rechnungsübersicht</h2>
     <!-- Add search box for owned vehicles -->
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -1359,7 +1362,7 @@ function totalAccounts($conn) {
     <div class="table-container">
         <?php if ($resultOKOKBilling->num_rows > 0) {
             echo '<table id="okokbilling-table">';
-            echo "<tr><th>Rechnungs Nr.</th><th>Empfänger</th><th>Aussteller</th><th>Summe</th><th>Zinsen</th><th>Status/r</th></tr>";
+            echo "<tr><th>Rechnungs Nr.</th><th>Empfänger</th><th>Aussteller</th><th>Summe</th><th>Zinsen</th><th>Status</th></tr>";
             while ($row = $resultOKOKBilling->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row["ref_id"] . "</td>";
@@ -1372,7 +1375,7 @@ function totalAccounts($conn) {
             }
             echo "</table>";
         } else {
-            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #0052ea;"></i>Noch keine Einträge..</p>';
+            echo '<p><i class="fa-solid fa-magnifying-glass fontawesomeicons" style="color: #007bff;"></i>Noch keine Einträge..</p>';
         } ?>
     </div>
 </div>
@@ -1786,7 +1789,7 @@ const searchInputGeparkteAutos = document.getElementById("search-parked-vehicles
 searchInputGeparkteAutos.addEventListener("keyup", searchGeparkteAutos);
 
 const searchInputGangStashes = document.getElementById("search-gangstashes");
-searchInputGangStashes.addEventListener("keyup", searchGeparkteAutos);
+searchInputGangStashes.addEventListener("keyup", searchGangStashes);
 
 const searchInputPlayerInventory = document.getElementById("search-inventory");
 searchInputPlayerInventory.addEventListener("keyup", searchPlayerInventory);
@@ -1800,7 +1803,15 @@ searchInputTigerMechanic.addEventListener("keyup", searchSpeedCams);
 const searchInputOKOKBilling = document.getElementById("search-okokbilling");
 searchInputOKOKBilling.addEventListener("keyup", searchOKOKBilling);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* Avatar Logout Section Script */
     // Function to open the modal
@@ -1822,6 +1833,27 @@ searchInputOKOKBilling.addEventListener("keyup", searchOKOKBilling);
     // Event listener for the close icon in the modal
     var closeModalIcon = document.getElementById("close-modal");
     closeModalIcon.addEventListener("click", closeModal);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var username = <?php echo json_encode($_SESSION['username']); ?>;
+var avatarURL = <?php echo json_encode($avatar_url); ?>;
+// Function to send a join or leave message to the server
+function sendJoinOrLeaveMessage(username, avatarURL, message) {
+  const xhr = new XMLHttpRequest();
+  const data = new FormData();
+  data.append('username', 'System'); // 'System' user for these actions
+  data.append('avatar_url', 'img/system_avatar.png'); // Replace with your chosen path for System avatar
+  data.append('message', message); // Complete message string
+  xhr.open('POST', 'join_or_leave_chat.php', true);
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // You can handle a successful response here if needed
+    }
+  };
+  xhr.send(data);
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.getElementById("joinchat-button").addEventListener("click", function() {
@@ -1848,6 +1880,7 @@ joinChatButton.addEventListener('click', function () {
   chatJoined = !chatJoined; // Toggle the variable
 
   if (chatJoined) {
+    sendJoinOrLeaveMessage(username, avatarURL, username + ' ist dem Chat beigetreten!');
     // Hide the overlay and change the button's text if the chat is joined
     overlay.style.display = 'none';
     joinChatButton.textContent = 'Chat verlassen';
@@ -1855,11 +1888,14 @@ joinChatButton.addEventListener('click', function () {
 
   } else {
     // Show the overlay and change the button's text if the chat is left
+    sendJoinOrLeaveMessage(username, avatarURL, username + ' hat den Chat verlassen!');
     overlay.style.display = 'flex';
     joinChatButton.textContent = 'Chat beitreten';
 
   }
 });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Function to fetch and display the total number of messages
 function fetchTotalMessages() {
@@ -2285,18 +2321,20 @@ function createTaskItem(taskId, taskContent) {
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 // Sound Button
-// Get a reference to the button and the audio element
-var button = document.getElementById('header-info-right-login');
-var audio = document.getElementById('mySound2');
-//
-var button = document.getElementById('joinchat-button');
-var audio = document.getElementById('mySound');
-
-// Add an event listener to the button
-button.addEventListener('click', function() {
-// Play the audio
-audio.play();
+var logoutButton = document.getElementById('header-info-right-login');
+var logoutAudio = document.getElementById('mySound2');
+logoutButton.addEventListener('click', function() {
+  logoutAudio.play();
 });
+
+var joinTeamChatButton = document.getElementById('joinchat-button');
+var joinTeamChatAudio = document.getElementById('mySound');
+joinTeamChatButton.addEventListener('click', function() {
+  joinTeamChatAudio.play();
+});
+
+
+
   </script>
   <script type="text/javascript" src="js/serverrestart.js"></script>
 </body>

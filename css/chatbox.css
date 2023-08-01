@@ -332,9 +332,6 @@
   z-index: 1;
 }
 
-.new-message-image {
-  
-}
 
 .error-message {
   color: red;
@@ -391,3 +388,4 @@
   .input-container p {
   transition: color 0.3s ease; /* Smooth transition for color change */
   }
+

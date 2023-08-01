@@ -5,13 +5,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 3px 0 0 -1px;
+    margin: -35px 0 0 -1px;
     text-align: center;
     font-size: 0;
     word-spacing: 0;
     color: #aaa;
     font-family: 'Montserrat', sans-serif;
-	top: 2%;
 }
 
 .navigation-item {

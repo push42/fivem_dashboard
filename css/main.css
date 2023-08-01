@@ -105,8 +105,9 @@ tr:nth-child(even) {
 .users-section h2,.owned-vehicles-section h2,.codem-fishing-section h2,.codem-crafting-section h2,.company-money-section h2,.live-call-section h2,.parked-vehicles-section h2,.gangstashes-section h2,.inventory-section h2,.speedcams-section h2,.mechanic-section h2, .okokbilling-section h2 {
     margin-top: 0;
     margin-bottom: 20px;
-    color: #fff;
-    font-size: 18px;
+    color: #007bff;
+    font-size: 22px;
+    font-weight: 700;
 }
 .fontawesomeicons {
     margin-right: 8px;
@@ -128,6 +129,7 @@ tr:nth-child(even) {
     max-width: 200px;
     overflow: hidden;
     font-size: 12px;
+    font-weight: 700;
     padding: 4px 8px;
     word-break: break-all;
     hyphens: auto;
@@ -453,6 +455,7 @@ margin-left: 10px;
 .image-header{
     position: relative;
     display: flow-root;
+    color: #fff;
 }
   
 .subheader-text {
@@ -466,12 +469,15 @@ margin-left: 10px;
     padding: 25px;
     margin-top: -35px;
     color: #fff;
-    font-weight: 800;
+    font-weight: 700;
     font-family: Montserrat, sans-serif;
 }
 
 .header-content h1 {
     margin-bottom: -5px;
+    font-weight: 900;
+    font-family: Montserrat, sans-serif;
+    font-size: 44px;
 }
 
 
