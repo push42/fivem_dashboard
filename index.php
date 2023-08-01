@@ -222,13 +222,15 @@ function totalAccounts($conn) {
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Rogue-V | Dashboard</title>
 </head>
 
 <!-- Navigation -->
 <section class="page-section bg-dark-lighter" id="navigation">
-    <div class="container relative">
-                            
+    <div class="container relative">         
         <!-- Navigation grid -->
         <div class="navigation-grid">
             <!-- Navigation -->
@@ -245,7 +247,6 @@ function totalAccounts($conn) {
             </div>
             </a>
             <!-- End Navigation -->
-
             <!-- Navigation -->
             <a href="https://roguev.de" target="_blank">
             <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
@@ -259,8 +260,7 @@ function totalAccounts($conn) {
                 </div>
             </div>
             </a>
-            <!-- End Navigation -->
-                                    
+            <!-- End Navigation -->             
             <!-- Navigation -->
             <a href="https://roguev.de" target="_blank">
             <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
@@ -270,21 +270,6 @@ function totalAccounts($conn) {
                     </div>
                     <div class="navigation-item-role glow-text2">
                         Gelange auf das txAdmin Dashboard
-                    </div>
-                </div>
-            </div>
-            </a>
-            <!-- End Navigation -->
-
-            <!-- Navigation -->
-            <a href="#rvdatenbank">
-            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
-                <div class="navigation-item-descr dark">
-                    <div class="navigation-item-name">
-                    <i class="fa-solid fa-database todoicon"></i>Datenbank
-                    </div>
-                    <div class="navigation-item-role glow-text2">
-                        Siehe dir die wichtigsten Einträge in der Datenbank an
                     </div>
                 </div>
             </div>
@@ -459,7 +444,7 @@ function totalAccounts($conn) {
     <input type="text" id="task-input" placeholder="Neue Aufgabe hinzufügen...">
     <button id="add-task-button">Hinzufügen</button>
   </div>
-  <ul id="task-list"></ul>
+    <ul id="task-list"></ul>
 </div>
 
 <div class="wirtschafts-header"><i class="fa-solid fa-chart-simple fa-bounce wheadericon"></i>Wirtschaftsübersicht</div>

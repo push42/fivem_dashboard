@@ -465,6 +465,9 @@ margin-left: 10px;
 .header-content {
     padding: 25px;
     margin-top: -35px;
+    color: #fff;
+    font-weight: 800;
+    font-family: Montserrat, sans-serif;
 }
 
 .header-content h1 {

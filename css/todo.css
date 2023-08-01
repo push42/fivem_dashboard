@@ -38,8 +38,8 @@ body {
     flex: 1;
     margin-right: 10px;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ffffff;
+    border-radius: 15px;
+    border: 2.5px solid #ffffff;
     background: #1b1e23;
     color: #ffffff;
     transition: all 0.3s ease-in-out;
@@ -51,11 +51,13 @@ body {
 }
 
 #add-task-button {
-    padding: 10px 20px;
+    padding: 2px 20px;
     background: #3949ab;
     border: none;
     color: #fff;
-    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
@@ -81,6 +83,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: #fff
 }
 
 #task-list li:hover {
@@ -89,18 +92,21 @@ body {
 }
 
 .delete-task-button {
-    background-color: #f44336;
-    color: #fff;
+    background-color: #ececec;
+    color: #070707;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    font-weight: 700;
 }
 
 .delete-task-button:hover {
-    background-color: #e53935;
+    background-color: #181818;
     transform: scale(1.1);
+    color: #fff;
+    font-weight: 700;
 }
 
 #task-list li.completed {
