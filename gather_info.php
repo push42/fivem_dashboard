@@ -1,20 +1,32 @@
 <?php
+// Function to get the database connection
+function get_connection() {
+    $host = 'localhost';
+    $dbname = 'webdev';
+    $username = 'root';
+    $password = '';
+    try {
+        $con = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $con;
+    } catch (PDOException $e) {
+        die("Connection failed: " . $e->getMessage());
+    }
+}
+
 // Function to create the database and the 'users' table
 function create_database_and_table() {
-    $con = mysqli_connect("localhost", "root", "");
-    if (!$con) {
-        die("Verbindung Fehlgeschlagen: " . mysqli_connect_error());
-    }
+    $con = get_connection();
 
     // Create the database if it doesn't exist
     $sql = "CREATE DATABASE IF NOT EXISTS webdev";
-    mysqli_query($con, $sql);
+    $con->exec($sql);
 
     // Select the database
-    mysqli_select_db($con, "webdev");
+    $con->exec("USE webdev");
 
-    // Create the 'users' table if it doesn't exist
-    $sql = "CREATE TABLE IF NOT EXISTS users (
+    // Create the 'users' table with additional fields
+    $sql = "CREATE TABLE IF NOT EXISTS user_logs (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
         browser VARCHAR(255) NOT NULL,
@@ -24,48 +36,39 @@ function create_database_and_table() {
         local_storage VARCHAR(50) NOT NULL,
         session_storage VARCHAR(50) NOT NULL,
         cookies TEXT NOT NULL,
+        language VARCHAR(50) NOT NULL,
+        referrer VARCHAR(255) NOT NULL,
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )";
-
-    mysqli_query($con, $sql);
-    mysqli_close($con);
+    $con->exec($sql);
+    $con = null;
 }
 
 // Function to save user information to the database
-function save_user_info($username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies) {
-    $con = mysqli_connect("localhost", "root", "", "webdev");
+function save_user_info($username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies, $language, $referrer) {
+    $con = get_connection();
     
-    if (!$con) {
-        die("Verbindung Fehlgeschlagen: " . mysqli_connect_error());
-    }
-    
-    $query = "INSERT INTO users (username, browser, os, ip_address, dnt_header, local_storage, session_storage, cookies) VALUES ('$username', '$browser', '$os', '$ip_address', '$dnt_header', '$local_storage', '$session_storage', '$cookies')";
-    mysqli_query($con, $query);
-    mysqli_close($con);
+    $query = "INSERT INTO user_logs (username, browser, os, ip_address, dnt_header, local_storage, session_storage, cookies, language, referrer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $con->prepare($query);
+    $stmt->execute([$username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies, $language, $referrer]);
+    $con = null;
 }
 
 // Gather user information
-$username = "";
+$username = ""; // Populate this if you have the user's username
 $browser = $_SERVER['HTTP_USER_AGENT'];
 $os = php_uname('s');
 $ip_address = $_SERVER['REMOTE_ADDR'];
-
-
-// Get Do Not Track (DNT) Header
 $dnt_header = isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] === '1' ? 1 : 0;
-
-// Get Local Storage
 $local_storage = isset($_SERVER['HTTP_LOCAL_STORAGE']) ? $_SERVER['HTTP_LOCAL_STORAGE'] : 'Not Supported';
-
-// Get Session Storage
 $session_storage = isset($_SERVER['HTTP_SESSION_STORAGE']) ? $_SERVER['HTTP_SESSION_STORAGE'] : 'Not Supported';
-
-// Get Cookies
 $cookies = isset($_SERVER['HTTP_COOKIE']) ? $_SERVER['HTTP_COOKIE'] : 'Not Found';
+$language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : 'Not Found';
+$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'Not Found';
 
 // Create the database and table
 create_database_and_table();
 
 // Save user information to the database
-save_user_info($username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies);
+save_user_info($username, $browser, $os, $ip_address, $dnt_header, $local_storage, $session_storage, $cookies, $language, $referrer);
 ?>
