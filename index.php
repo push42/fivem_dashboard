@@ -218,6 +218,10 @@ function totalAccounts($conn) {
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <audio id="mySound" src="audio/button-click2.mp3" style="display:none"></audio>
     <audio id="mySound2" src="audio/button-click.mp3" style="display:none"></audio>
+    <!-- React.js -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <title>Rogue-V | Dashboard</title>
 </head>
 
@@ -315,6 +319,7 @@ function totalAccounts($conn) {
 </header>
 
 <body>
+    <noscript>Du musst Javascript aktiviert haben.</noscript>
 <div id="particles-js"></div>
    
 <section class="user-serverpanel">
