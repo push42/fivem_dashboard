@@ -1,8 +1,8 @@
 /* Online Users Counter */
 .online-users-count {
-    position: fixed; /* Fixed positioning allows you to place it anywhere on the screen */
-    right: 20px; /* Adjust as needed to move it from the right edge */
-    top: 20px; /* Adjust as needed to move it from the top edge */
+    position: absolute; /* Fixed positioning allows you to place it anywhere on the screen */
+    right: 150px; /* Adjust as needed to move it from the right edge */
+    top: 285px; /* Adjust as needed to move it from the top edge */
     display: flex;
     align-items: center;
     font-size: 14.5px;

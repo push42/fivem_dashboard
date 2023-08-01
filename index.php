@@ -47,6 +47,14 @@ if (isset($_SESSION["avatar_url"])) {
     $avatar_url2 = "img/system_avatar.png";
 }
 //
+//
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //              O N L I N E    U S E R    P A N E L
@@ -244,9 +252,8 @@ function totalAccounts($conn) {
     <link rel="stylesheet" href="css/main.css"><!-- main css file, other get imported in there -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9d1f4cdd15.js" crossorigin="anonymous"></script>
-    <script src="js/todo.js"></script>
+    <script type="text/javascript" src="js/todo.js"></script>
     <script type="text/javascript" src="js/chatstatistics.js"></script>
-    <script type="text/javascript" src="js/index.jsx"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <audio id="mySound" src="audio/button-click2.mp3" style="display:none"></audio>
     <audio id="mySound2" src="audio/button-click.mp3" style="display:none"></audio>
@@ -358,7 +365,7 @@ function totalAccounts($conn) {
 
 <!-- Hidden modal container -->
 <div id="avatar-modal" class="modal">
-    <div class="modal-content">
+    <div class="account-settings-modal">
         <span class="close-icon" id="close-modal">&times;</span>
         <h2><i class="fa-solid fa-user-gear labelicon"></i>Kontoeinstellungen</h2>
         <form id="avatar-form" method="post" action="update_avatar.php">

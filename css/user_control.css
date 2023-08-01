@@ -11,7 +11,7 @@
     background: radial-gradient(circle, rgba(24,26,71,0.9) 0%, rgba(27,27,27,1) 100%);
 }
 
-.modal-content {
+.account-settings-modal {
     background-color: #282828;
     margin: 10% auto;
     padding: 20px;
@@ -114,3 +114,11 @@
 .server-status-container2 {
     animation: pulsate 2s infinite;
   }
+
+.account-settings-modal h2 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 25px;
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+}
