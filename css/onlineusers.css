@@ -1,0 +1,37 @@
+/* Online Users Counter */
+.online-users-count {
+    position: fixed; /* Fixed positioning allows you to place it anywhere on the screen */
+    right: 20px; /* Adjust as needed to move it from the right edge */
+    top: 20px; /* Adjust as needed to move it from the top edge */
+    display: flex;
+    align-items: center;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #f4f6f7;
+    background: linear-gradient(to right, #0a0a0a, #1b1b1b);
+    padding: 12.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .online-badge {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #2bff00;
+    margin-right: 8px;
+    animation: glowing-red-dot 1s infinite;
+  }
+  
+  @keyframes glowing-red-dot {
+    0%, 100% {
+      box-shadow: 0 0 5px #2bff00;
+    }
+    50% {
+      box-shadow: 0 0 20px #2bff00, 0 0 30px #2bff00;
+    }
+  }
+  

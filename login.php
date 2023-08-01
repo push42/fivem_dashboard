@@ -60,20 +60,26 @@
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
-
-            // Fetch the avatar_url from the staff_accounts table and set it in the session
-            $con = mysqli_connect("localhost", "root", "", "webdev");
-            $stmt = $con->prepare("SELECT avatar_url FROM staff_accounts WHERE username = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $stmt->bind_result($avatar_url);
-            $stmt->fetch();
+        
+            // Fetch the avatar_url and rank from the staff_accounts table
+            $stmt_avatar = $con->prepare("SELECT avatar_url, rank FROM staff_accounts WHERE username = ?");
+            $stmt_avatar->bind_param("s", $username);
+            $stmt_avatar->execute();
+            $stmt_avatar->bind_result($avatar_url, $rank);
+            $stmt_avatar->fetch();
             $_SESSION['avatar_url'] = $avatar_url;
-
-            // Close the statement and connection
-            $stmt->close();
+            $_SESSION['rank'] = $rank;
+            $stmt_avatar->close();
+        
+            // Insert username and avatar into online user
+            $stmt_online_user = $con->prepare("INSERT INTO online_users (username, avatar_url) VALUES (?, ?)");
+            $stmt_online_user->bind_param("ss", $_SESSION['username'], $_SESSION['avatar_url']);
+            $stmt_online_user->execute();
+            $stmt_online_user->close();
+        
+            // Close the connection
             mysqli_close($con);
-
+        
             header("Location: index.php");
             exit;
         } else {

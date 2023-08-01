@@ -12,10 +12,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 // Logout functionality
 if (isset($_POST["logout"])) {
+    // Open a connection to the database
+    $con = mysqli_connect("localhost", "root", "", "webdev");
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Prepare the DELETE statement
+    $stmt = $con->prepare("DELETE FROM online_users WHERE username = ?");
+    $stmt->bind_param("s", $_SESSION['username']);
+    $stmt->execute();
+    $stmt->close();
+
+    // Close the connection
+    mysqli_close($con);
+
+    // Destroy the session and redirect to login page
     session_destroy();
     header("Location: login.php");
     exit();
 }
+
 if (isset($_POST["refresh"])) {
     // Simply return the current count without incrementing or decrementing
     echo $count;
@@ -29,6 +46,20 @@ if (isset($_SESSION["avatar_url"])) {
     $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
     $avatar_url2 = "img/system_avatar.png";
 }
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//              O N L I N E    U S E R    P A N E L
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$con = mysqli_connect("localhost", "root", "", "webdev");
+    if (!$con) {
+        die("Verbindung Fehlgeschlagen: " . mysqli_connect_error());
+    }
+$result = mysqli_query($con, "SELECT COUNT(*) as count FROM online_users");
+$row = mysqli_fetch_assoc($result);
+$online_users_count = $row['count'];
+mysqli_close($con);
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -340,6 +371,10 @@ function totalAccounts($conn) {
             <input type="submit" name="update_username" value="> Benutzername ändern">
         </form>
     </div>
+</div>
+
+<div class="online-users-count">
+    <span class="online-badge"></span>Teamler eingeloggt: <?php echo $online_users_count; ?>
 </div>
 
 <div class="server-status-container">
@@ -1881,13 +1916,13 @@ joinChatButton.addEventListener('click', function () {
 
   if (chatJoined) {
     sendJoinOrLeaveMessage(username, avatarURL, username + ' ist dem Chat beigetreten!');
-    // Hide the overlay and change the button's text if the chat is joined
+    // Hide the overlay and change the button's text if the chat is joined and send a announcement
     overlay.style.display = 'none';
     joinChatButton.textContent = 'Chat verlassen';
 
 
   } else {
-    // Show the overlay and change the button's text if the chat is left
+    // Show the overlay and change the button's text if the chat is left and send a announcement
     sendJoinOrLeaveMessage(username, avatarURL, username + ' hat den Chat verlassen!');
     overlay.style.display = 'flex';
     joinChatButton.textContent = 'Chat beitreten';
@@ -2334,7 +2369,13 @@ joinTeamChatButton.addEventListener('click', function() {
 });
 
 
-
+// Check if the player is still connected / has the window open
+setInterval(function() {
+  // Perform an AJAX request to a PHP script to update the user's "last seen" time
+  $.post('heartbeat.php', function(data) {
+    // You can handle the response here if needed
+  });
+}, 5000); // Every 5 seconds
   </script>
   <script type="text/javascript" src="js/serverrestart.js"></script>
 </body>

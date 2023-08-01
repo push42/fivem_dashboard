@@ -6,7 +6,11 @@
 @import url('todo.css');
 @import url('user_control.css');
 @import url('ec_overview.css');
-
+@import url('onlineusers.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
 
 ::-webkit-scrollbar {
     width: 0.75rem;
@@ -213,54 +217,8 @@ tr:nth-child(even) {
 .discord-icon {
     margin-right: 8px;
 }
-.gameservericon {
-    margin-right: 8px;
-}
-.server-status-container {
-    position: absolute;
-    top: 20%;
-    left: 3%;
-    width: 405px;
-    height: fit-content;
-    background-color: #0c0c0c34;
-    padding: 10px 10px;
-    text-align: center;
-    color: #fff;
-    border-radius: 25px;
-}
 
-.server-status-container2 {
-    position: absolute;
-    top: 20%;
-    right: 3%;
-    width: 405px;
-    height: fit-content;
-    background-color: #0c0c0c34;
-    padding: 10px 10px;
-    text-align: center;
-    color: #fff;
-    border-radius: 25px;
-}
-.server-status-section h2 {
-    margin-top: 0;
-    color: #fff;
-    font-size: 25px;
-}
-.server-status-section p {
-    margin: 0;
-    padding: 1.5px;
-    color: #dedede;
-}
 
-.server-status-section ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.server-status-section li {
-    color: #0052ea;
-}
 .dropdown-menu {
     background: transparent;
     border-radius: 25px;
@@ -270,15 +228,6 @@ tr:nth-child(even) {
     font-weight: 700;
     font-family: Montserrat, sans-serif;
     color: #0052ea;
-}
-.countdown-timer-t {
-    color: #fc5458;
-    font-size: 13px;
-}
-#countdown-timer {
-    color: #ccc;
-    font-weight: 900;
-    font-size: 12px;
 }
 #execute-query-btn {
     color: #fff;
@@ -444,11 +393,6 @@ margin-left: 10px;
     }
   }
   
-  .server-status-container2 {
-    animation: pulsate 2s infinite;
-  }
-
-
 
 
 

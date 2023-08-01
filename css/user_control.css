@@ -96,3 +96,21 @@
 .labelicon:hover {
     color: #eee;
 }
+
+
+.server-status-container2 {
+    position: absolute;
+    top: 20%;
+    right: 3%;
+    width: 405px;
+    height: fit-content;
+    background-color: #0c0c0c34;
+    padding: 10px 10px;
+    text-align: center;
+    color: #fff;
+    border-radius: 25px;
+}
+
+.server-status-container2 {
+    animation: pulsate 2s infinite;
+  }
