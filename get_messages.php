@@ -2,7 +2,7 @@
 // get_messages.php
 
 // Include the chat_functions.php file to access the get_messages() function
-include 'chat_functions.php';
+include 'functions/chat_functions.php';
 
 // Fetch the chat messages from the database in reverse order (newest messages first)
 $messages = get_messages(true);

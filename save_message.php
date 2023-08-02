@@ -1,6 +1,6 @@
 <?php
 // Include the chat_functions.php
-include 'chat_functions.php';
+include 'functions/chat_functions.php';
 
 // Check if the request is an AJAX request
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {

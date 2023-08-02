@@ -1,8 +1,11 @@
 <?php
-include "db_config.php";
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'webdev';
 
 try {
-    $conn = connect_webserver_db();
+    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->query("SELECT COUNT(*) AS totalMessages FROM chat_messages");

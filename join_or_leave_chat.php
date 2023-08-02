@@ -1,5 +1,5 @@
 <?php
-include 'chat_functions.php';
+include 'functions/chat_functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

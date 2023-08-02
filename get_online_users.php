@@ -1,13 +1,13 @@
 <?php
-include 'db_config.php';
+$con = mysqli_connect("localhost", "root", "", "webdev");
+if (!$con) {
+    die("Verbindung Fehlgeschlagen: " . mysqli_connect_error());
+}
 
-$conn = connect_webserver_db();
-
-$result = $conn->query("SELECT COUNT(*) as count FROM online_users");
-$row = $result->fetch(PDO::FETCH_ASSOC);
+$result = mysqli_query($con, "SELECT COUNT(*) as count FROM online_users");
+$row = mysqli_fetch_assoc($result);
 $online_users_count = $row['count'];
-
-$conn = null;
+mysqli_close($con);
 
 echo $online_users_count;
 ?>
