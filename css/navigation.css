@@ -135,3 +135,9 @@
 		background-position: 0% 0%;
 	}
 }
+
+/* Hyperlinks */
+.navigation-grid a:hover,
+.navigation-grid a:visited {
+    color: transparent;
+}

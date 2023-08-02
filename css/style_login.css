@@ -1,139 +1,173 @@
 body {
     font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #0a0a0a, #1b1b1b);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     margin: 0;
+    color: #fff;
+}
+
+.register-container {
+    background: #121212;
+    padding: 60px 80px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    width: 450px;
+    max-width: 90%;
+    animation: fadeIn 0.5s ease;
+}
+
+.register-logo {
+    display: block;
+    max-width: 150px;
+    margin: 0 auto 20px auto;
+}
+
+.header-text h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #1e90ff;
+}
+
+.form-field {
+    margin-bottom: 25px;
     position: relative;
 }
 
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #0e0e0e;
-    z-index: -1;
-}
-
-.login-container {
-    color: #003cff;
-    background: rgb(24,26,71);
-    background: radial-gradient(circle, rgba(24,26,71,0.9) 0%, rgba(27,27,27,1) 100%);
-    border: 1px solid #003cff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.login-container h2 {
-    margin-top: 0;
-    text-align: center;
-    margin-top: -50px;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    width: 90%;
-    padding: 10px;
-    border: 3px solid #003cff;
-    background: linear-gradient(to bottom, #eeeeee, #414141);
-    border-radius: 6px;
-    outline: none;
-}
-
-.login-container input[type="submit"] {
+.register-container label {
     font-weight: 500;
-    font-size: 12px;
-    bottom: 0;
-    right: 50%;
-    width: 50%;
-    padding: 10px;
-    margin-top: 10px;
-    background: transparent;
-    box-shadow: 5px #0e0e0e;
+    display: block;
+    margin-bottom: 10px;
+    color: #eee;
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"] {
+    padding: 15px;
+    border: 2px solid #333;
+    background: #333;
+    border-radius: 10px;
+    outline: none;
     color: #fff;
-    border: 2px solid #414141;
-    border-radius: 25px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.register-container input[type="text"]:focus,
+.register-container input[type="password"]:focus {
+    border-color: #1e90ff;
+}
+
+.register-container input[type="submit"] {
+    width: 107%;
+    padding: 18px;
+    border: none;
+    background-color: #1e90ff;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    font-family: 'Montserrat', sans-serif;
 }
 
-.login-container button:hover {
-    background-color: #a8a8a8;
+.register-container input[type="submit"]:hover {
+    background-color: #0066cc;
 }
 
-.logo-image {
-    width: 200px; 
-    height: auto; 
-    margin-bottom: 20px; 
-}
-
-.login-username,
-.login-password {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #a8a8a8;
-    padding-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.form-icons {
-    margin-right: 8px;
-}
-
-.form-icons2 {
-    margin-right: 10px;
-}
-
-@media (max-width: 480px) {
-    .login-container input[type="submit"] {
-        width: 75%;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
-.spacer01 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 8.5px;
-    font-weight: 600;
-    text-transform: none;
-    color: #a8a8a8;
-    padding: 10px 10px;
+/* Footer */
+footer {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #eee;
 }
 
-.madeby {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            color: #fff;
-            font-size: 7px;
-            margin-top: 25px;
-            text-align: center;
+.footer-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
 }
 
-.hinweis {
-    padding: 9px;
-    color: #fff;
+.footer-container:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.login-container p {
-    color: #fff;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
-    margin-top: -10px;
+.footer-container a {
+    color: #1e90ff;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.3s ease;
 }
 
-.iconsfont {
-    padding: 8px;
+.footer-container a:hover {
+    color: #0066cc;
+}
+
+.heart {
+    color: #ff4d4d;
+    margin: 0 5px;
+}
+
+.footer-container a:visited {
+    color: #1e90ff; /* Same color as unvisited links */
+}
+
+
+/* Info Banner register */
+.info-banner {
+    background: #121212;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease;
+}
+
+.info-banner p {
+    margin: 0;
+    font-size: 16px;
+    color: #eee;
+}
+
+.info-banner a {
+    color: #1e90ff;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+/* Hyperlinks */
+.info-banner a:hover,
+.info-banner a:visited {
+    color: #0066cc;
+}
+
+@keyframes slideDown {
+    from {
+        top: -50px;
+    }
+    to {
+        top: 0;
+    }
 }

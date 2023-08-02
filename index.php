@@ -368,7 +368,7 @@ function totalAccounts($conn) {
 </div>
 
 <div class="online-users-count" id="onlineUsersCount">
-    <span class="online-badge"></span>Teamler eingeloggt: <span id="onlineUsersCounter"></span>
+    <span class="online-badge"></span>Staff Online: <span id="onlineUsersCounter"></span>
 </div>
 
 <div class="server-status-container">

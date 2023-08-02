@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="css/style_login.css">
     <link rel="shortcut icon" href="img/favicon.png">
@@ -11,12 +12,30 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <title>Login</title>
 </head>
+
 <body>
-    <div id="particles-js"></div>
-    <div class="login-container">
-        <img src="https://i.ibb.co/smLg902/Untitled-1.gif" alt="Logo" class="logo-image">
-        <h2>ROGUE-V DASHBOARD</h2>
-        <p>Willkommen, bitte melde dich an.</p>
+<body>
+
+<div class="info-banner">
+    <p>Noch keinen Account? <a href="register.php">Erstelle dir einen Account</a> hier!</p>
+</div>
+
+    <div class="register-container">
+        <img class="register-logo" src="img/system_avatar.png" alt="Logo">
+        <div class="header-text">
+            <h2>Willkommen zurück!</h2>
+        </div>
+        <form action="" method="post">
+            <div class="form-field">
+                <label><i class="form-icons"></i>Benutzername</label>
+                <input type="text" name="username" placeholder="Gib deinen Benutzernamen ein">
+            </div>
+            <div class="form-field">
+                <label><i class="form-icons"></i>Passwort</label>
+                <input type="password" name="password" placeholder="Gib dein Passwort ein">
+            </div>
+            <input type="submit" value="Login" name="submit">
+        </form>
         <?php
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
@@ -24,22 +43,6 @@
             include "login_handler.php";
             include "gather_info.php";
         ?>
-        <form method="post" action="">
-        <div class="login-username">
-            <label></label>
-        </div>
-        <i class="fa-solid fa-user-shield form-icons" style="color: #ffffff;"></i><input type="text" name="username" required>
-        <div class="login-username">
-            <label></label>
-        <div>
-        <i class="fa-solid fa-lock form-icons2" style="color: #ffffff;"></i><input type="password" name="password" required>
-        <div class="spacer01"><i class="fa-solid fa-info hinweis"></i>Solltest du noch keinen Account haben,</br> melde dich bitte im Discord im Teamchannel.</div>
-            <input type="submit" value="ANMELDEN">
-        </form>
-        <div class="madeby"><i class="fa-solid fa-heart fa-beat iconsfont" style="color: #ff0000;"></i>made by push42
-            <i class="fa-brands fa-discord fa-beat iconsfont" style="color: #1395ff;"></i>dsc.gg/roguev
-        </div>
-    </div>
     <script>
         // Particle.js configuration
         particlesJS("particles-js", {
@@ -61,4 +64,15 @@
         });
     </script>
 </body>
+
+<footer>
+    <div class="footer-container">
+        Made with <span class="heart">❤️</span> by <a href="https://github.com/reverseHaze" target="_blank">push.42</a> |
+        <a href="https://roguev.de/" target="_blank">Projekt #1</a> |
+        <a href="https://trap-life.de/" target="_blank">Projekt #2</a>
+    </div>
+</footer>
+
+
+
 </html>
