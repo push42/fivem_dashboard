@@ -1,20 +1,14 @@
 <?php
-$servername = 'localhost';
-$db_username = 'root';
-$password = '';
-$database = 'webdev';
+include 'db_config.php';
 
-$conn = new mysqli($servername, $db_username, $password, $database);
-if ($conn->connect_error) {
-    die('Connection failed: ' . $conn->connect_error);
-}
+$conn = connect_webserver_db();
 
 if (isset($_POST['taskId'])) {
     $taskId = $_POST['taskId'];
 
     $sql = 'DELETE FROM todo_tasks WHERE id = ?';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $taskId);
+    $stmt->bindParam(1, $taskId, PDO::PARAM_INT);
     if ($stmt->execute()) {
         $response = ['success' => true];
         echo json_encode($response);
@@ -27,6 +21,6 @@ if (isset($_POST['taskId'])) {
     echo json_encode($response);
 }
 
-$stmt->close();
-$conn->close();
+$stmt = null;
+$conn = null;
 ?>

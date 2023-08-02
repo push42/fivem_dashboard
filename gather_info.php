@@ -1,17 +1,8 @@
 <?php
+include 'db_config.php';
 // Function to get the database connection
 function get_connection() {
-    $host = 'localhost';
-    $dbname = 'webdev';
-    $username = 'root';
-    $password = '';
-    try {
-        $con = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $con;
-    } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
-    }
+    return connect_webserver_db();
 }
 
 // Function to create the database and the 'users' table

@@ -1,12 +1,9 @@
 <?php
+include 'db_config.php';
 function save_message($username, $avatar_url, $message) {
-    $servername = 'localhost';
-    $db_username = 'root';
-    $password = '';
-    $database = 'webdev';
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $db_username, $password);
+        $conn = connect_webserver_db();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $conn->prepare("INSERT INTO chat_messages (username, avatar_url, message) VALUES (?, ?, ?)");
@@ -17,13 +14,9 @@ function save_message($username, $avatar_url, $message) {
 }
 
 function get_messages($reverse = false) {
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'webdev';
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+        $conn = connect_webserver_db();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "SELECT username, avatar_url, message, timestamp FROM chat_messages ORDER BY timestamp DESC";
