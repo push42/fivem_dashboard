@@ -5,6 +5,9 @@ ini_set('memory_limit', '-1');
 // Here you can for example the gather_info.php to track data from people visitng the dashboard
 // If you plan on using it, you may need to include a cookie banner depending on where you life
 include "chat_functions.php";
+require "components/head.inc.php";
+require "components/userpanel.inc.php";
+require "components/serverstatus.inc.php";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Check if the user is not logged in, then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -47,15 +50,6 @@ if (isset($_SESSION["avatar_url"])) {
     $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
     $avatar_url2 = "img/system_avatar.png";
 }
-//
-//
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //              D A T A B A S E    F O R    F I V E M    (I recommend to use 2 different databases for better organization)
@@ -139,19 +133,7 @@ $resultTigerMechanic = $conn->query($sqlTigerMechanic);
 //
 $sqlOKOKBilling = "SELECT * FROM okokbilling";
 $resultOKOKBilling = $conn->query($sqlOKOKBilling);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                S E R V E R S T A T U S    &     O N L I N E   P L A Y E R S 
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Here you need to set your server_id from trackyserver.com, i use it to fetch the server status, online players & voting
-$server_id = "YOUR_SERVER_ID_FROM_TRACKYSERVER.COM";
-$url = "https://api.trackyserver.com/widget/index.php?id=" . $server_id;
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_URL, $url);
-$result = json_decode(curl_exec($ch), true);
-curl_close($ch);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                  I C O N S    F O R    T H E    A C C O U N T S    I N    T H E    U S E R    T A B L E
@@ -228,182 +210,11 @@ function totalAccounts($conn) {
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="img/favicon.png"><!-- icon that is shown in the browser tab -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css/main.css"><!-- main css file, other get imported in there -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/9d1f4cdd15.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/todo.js"></script>
-    <script type="text/javascript" src="js/chatstatistics.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <audio id="mySound" src="audio/button-click2.mp3" style="display:none"></audio>
-    <audio id="mySound2" src="audio/button-click.mp3" style="display:none"></audio>
-    <!-- React.js -->
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Extras -->
-    <link rel="manifest" href="manifest.json">
-    <title>Rogue-V | Dashboard</title>
-</head>
 
-<!-- Navigation -->
-<section class="page-section bg-dark-lighter" id="navigation">
-    <div class="container relative">         
-        <!-- Navigation grid -->
-        <div class="navigation-grid">
-            <!-- Navigation -->
-            <a href="https://roguev.de" target="_blank">
-            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
-                <div class="navigation-item-descr dark">
-                    <div class="navigation-item-name">
-                    <i class="fa-solid fa-globe  todoicon"></i>Homepage
-                    </div>
-                    <div class="navigation-item-role glow-text2">
-                        Gelange zurück auf die Hauptseite von Rogue-V
-                    </div>
-                </div>
-            </div>
-            </a>
-            <!-- End Navigation -->
-            <!-- Navigation -->
-            <a href="https://roguev.de" target="_blank">
-            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="100">
-                <div class="navigation-item-descr dark">
-                    <div class="navigation-item-name">
-                    <i class="fa-solid fa-users  todoicon"></i>Forum
-                    </div>
-                    <div class="navigation-item-role glow-text2">
-                        Gelange zu unserem Forum
-                    </div>
-                </div>
-            </div>
-            </a>
-            <!-- End Navigation -->             
-            <!-- Navigation -->
-            <a href="https://roguev.de" target="_blank">
-            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
-                <div class="navigation-item-descr dark">
-                    <div class="navigation-item-name">
-                    <i class="fa-solid fa-server  todoicon"></i>txAdmin
-                    </div>
-                    <div class="navigation-item-role glow-text2">
-                        Gelange auf das txAdmin Dashboard
-                    </div>
-                </div>
-            </div>
-            </a>
-            <!-- End Navigation -->
-            <!-- Navigation -->
-            <a href="https://roguev.de" target="_blank">
-            <div class="navigation-item animate-init" data-anim-type="fade-in" data-anim-delay="300">
-                <div class="navigation-item-descr dark">
-                    <div class="navigation-item-name">
-                    <i class="fa-solid fa-ticket  todoicon"></i>Ticketsystem
-                    </div>
-                    <div class="navigation-item-role glow-text2">
-                        Siehe dir alle Tickets an, bearbeite oder schließe Sie
-                    </div>
-                </div>
-            </div>
-            </a>
-            <!-- End Navigation -->                        
-        </div>
-        <!-- End navigation Grid -->
-    </div>
-</section>
-<!-- End navigation Section -->
 
-<header class="image-header">
-        <div class="header-content">
-            <h1><img src="https://i.ibb.co/smLg902/Untitled-1.gif" alt="Logo" class="logo-image">ROGUEV - DASHBOARD</h1>
-            <div class="subheader-text">Willkommen im Rogue-V Dashboard! Behalte die Wirtschaft sowie weitere wichtige Datenbankeinträge im Blick.</div>
-            <div class="logo-image-text">made with<i class="fa-solid fa-heart fa-beat icon-image-text" style="color: #fc5458;"></i>by push.42</div>
-        </div>
-</header>
 
-<body>
-    <noscript>Du musst Javascript aktiviert haben.</noscript>
-<div id="particles-js"></div>
-   
-<section class="user-serverpanel">
-    <div class="server-status-container2">
-    <div class="header-info-right">
-        <!-- Display the user's avatar using the $avatar_url variable -->
-        <img src="<?php echo $avatar_url; ?>" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
-        <?php echo "Willkommen zurück, " . $_SESSION["username"] . "<br>"; ?>
-        <a href="#" id="settings-icon"> <!-- Link to the settings page -->
-            <i class="fa-solid fa-cog form-icons" style="color: #ffffff;"></i> <!-- Replace with your settings icon -->
-        </a>
-        <form method="post" action="">
-            <button type="submit" name="logout" id="header-info-right-login" class="fancy-button">Abmelden</button>
-        </form>
-    </div>
-</div>
 
-<!-- Hidden modal container -->
-<div id="avatar-modal" class="modal">
-    <div class="account-settings-modal">
-        <span class="close-icon" id="close-modal">&times;</span>
-        <h2><i class="fa-solid fa-user-gear labelicon"></i>Kontoeinstellungen</h2>
-        <form id="avatar-form" method="post" action="update_avatar.php">
-            <label><i class="fa-solid fa-image labelicon"></i>Avatar (URL):</label>
-            <input type="text" name="new_avatar_url" placeholder="www.dein-link.de/image.png" >
 
-            <label><i class="fa-solid fa-signature labelicon"></i>Benutzername:</label>
-            <input type="text" placeholder="Gib deinen neuen Benutzernamen ein" name="new_username" >
-            <input type="submit" name="update_avatar" value="> Avatar ändern">
-            <input type="submit" name="update_username" value="> Benutzername ändern">
-        </form>
-    </div>
-</div>
-
-<div class="online-users-count" id="onlineUsersCount">
-    <span class="online-badge"></span>Staff Online: <span id="onlineUsersCounter"></span>
-</div>
-
-<div class="server-status-container">
-    <div class="server-status-section">
-        <h2><i class="fas fa-server gameservericon" style="color: #007bff;"></i>FiveM Serverstatus</h2>
-    </div>
-        <div class="server-status">
-            <div class="status-circle" id="serverStatusCircle"></div>
-            <span id="serverStatusText">Serverstatus: Fetching...</span>
-        </div>
-        <div class="countdown-timer-t">Nächster Neustart:</div>
-            <div id="countdown-timer"></div></br>
-            <button class="player-list-button" id="playerListButton">Verbundene Spieler</button>
-                <div class="player-list-modal" id="playerListModal">
-                    <h2>Verbundene Spieler</h2>
-                    <?php if ($result) {
-                        echo "<p><strong>Spielerzahl: </strong> " .
-                            $result["playerscount"] .
-                            "</p>";
-                        if (isset($result["playerslist"])) {
-                            echo "<ul>";
-                        }
-                        echo "</ul>";
-                    } else {
-                        echo "<p>Serverinformationen können nicht abgerufen werden.</p>";
-                    } ?>
-                    <!-- Player list will be dynamically populated using JavaScript -->
-                    <ul id="playerList"></ul>
-                    <button class="close-button" id="closeButton">Schließen</button>
-                </div>
-        <div class="modal-overlay"></div>
-    </div>
-    </div>
-</div>
-</section>
 
 <div class="info-box">
     <h2>Dashboard | Informationen</h2>
@@ -1410,42 +1221,6 @@ function totalAccounts($conn) {
 
 
 <script>
-
-// **************************************** Gameserver Spielerliste ****************************************
-// Get references to the elements
-const playerListButton = document.getElementById('playerListButton');
-const playerListModal = document.getElementById('playerListModal');
-const closeButton = document.getElementById('closeButton');
-const playerList = document.getElementById('playerList');
-const modalOverlay = document.querySelector('.modal-overlay');
-// Function to show the player list modal
-function showPlayerListModal() {
-    // Clear existing player list
-    playerList.innerHTML = '';
-    // Add connected players to the modal
-    <?php if ($result && isset($result["playerslist"])) {
-        echo "const players = " .
-            json_encode($result["playerslist"]) .
-            ";";
-        echo "players.forEach(player => {";
-        echo 'const listItem = document.createElement("li");';
-        echo "listItem.textContent = player.name;";
-        echo "playerList.appendChild(listItem);";
-        echo "});";
-    } ?>
-    // Show the modal and overlay
-    playerListModal.style.display = 'block';
-    modalOverlay.style.display = 'block';
-}
-// Function to hide the player list modal
-function hidePlayerListModal() {
-    // Hide the modal and overlay
-    playerListModal.style.display = 'none';
-    modalOverlay.style.display = 'none';
-}
-// Add event listeners to the button and close button
-playerListButton.addEventListener('click', showPlayerListModal);
-closeButton.addEventListener('click', hidePlayerListModal);
 
 // **************************************** Suchfunktionen in den Datensätzen ****************************************
 function searchUsers() {
