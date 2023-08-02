@@ -2,11 +2,17 @@
 
 
 ## Preview
+![Login Preview](https://i.ibb.co/r5qYXd1/preview-login.png)
+![Register Preview](https://i.ibb.co/JQR8TQN/preview-register.png)
+![Dashboard Preview](https://i.ibb.co/mJXhgwf/preview-dashboard0.png)
+![Chat Preview 0](https://i.ibb.co/3zbWY94/preview-chat0.png)
+![Chat Preview 1](https://i.ibb.co/YcV8Fkf/preview-chat1.png)
+![Todo Preview 0](https://i.ibb.co/CbpdwGx/preview-todo0.png)
+![Todo Preview 1](https://i.ibb.co/T4JxbBG/preview-todo1.png)
+![Database Preview](https://i.ibb.co/C5r2ZBY/preview-database0.png)
+![User Panel Preview](https://i.ibb.co/FmGfGzY/preview-userpanel0.png)
 
-[![Watch the video](https://i.ibb.co/4PV6fsS/preview1.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
-[![Watch the video](https://i.ibb.co/zfTYpF9/preview2.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
-[![Watch the video](https://i.ibb.co/xDdZfLh/preview3.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
-[![Watch the video](https://i.ibb.co/g94f9qv/preview4.png)](https://www.youtube.com/watch?v=Ha8M_GkKgWA)
+
 
 > This project is a user-friendly, robust, and comprehensive admin dashboard for FiveM servers, designed with ❤️ by a dedicated FiveM enthusiast. Developed to polish my JavaScript and Database management skills, the dashboard aims to provide administrators with an insightful glance into the operations of their server. Your contributions are highly welcomed! Feel free to fork, use, and improve the project. 
 
