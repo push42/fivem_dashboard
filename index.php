@@ -1,14 +1,14 @@
 <?php
-session_start();
-ini_set('memory_limit', '-1');
-// Start of the dashboard
-// Here you can for example the gather_info.php to track data from people visitng the dashboard
-// If you plan on using it, you may need to include a cookie banner depending on where you life
-include "chat_functions.php";
-require "components/head.inc.php";
-require "components/userpanel.inc.php";
-require "components/serverstatus.inc.php";
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    session_start();
+    ini_set('memory_limit', '-1');
+    include "chat_functions.php";
+    require "components/head.inc.php";
+    require "components/userpanel.inc.php";
+    require "components/serverstatus.inc.php";
+    require "components/infobox.inc.php";
+    require "components/chatbox.inc.php";
+    require "components/todo.inc.php";
+
 // Check if the user is not logged in, then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
@@ -50,12 +50,7 @@ if (isset($_SESSION["avatar_url"])) {
     $avatar_url = "img/default_avatar.png"; // Replace "default_avatar.png" with the URL of your default avatar image or just replace the image inside the img folder
     $avatar_url2 = "img/system_avatar.png";
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//              D A T A B A S E    F O R    F I V E M    (I recommend to use 2 different databases for better organization)
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Change this into your Database details that hold your FiveM stuff
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -66,11 +61,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Verbindung fehlgeschlagen: " . $conn->connect_error);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//              D A T A B A S E    F O R    T H E    D A S H B O A R D    (For the user accounts and more)             
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $servername_webdev = "localhost";
 $username_webdev = "root";
 $password_webdev = "";
@@ -86,17 +77,7 @@ $conn_webdev = new mysqli(
 if ($conn_webdev->connect_error) {
     die("Connection to webdev failed: " . $conn_webdev->connect_error);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Here i define the database table names, if you use different database tables you need to change them here, also the names of the rows you want to read out
-// You can also use this to just read out everything:
-//   $sqlUsers =
-//      "SELECT * FROM users";
-//   $resultUsers = $conn->query($sqlUsers);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $sqlUsers =
     "SELECT identifier, firstname, lastname, job, job_grade, accounts, `group` FROM users";
 $resultUsers = $conn->query($sqlUsers);
@@ -134,22 +115,13 @@ $resultTigerMechanic = $conn->query($sqlTigerMechanic);
 $sqlOKOKBilling = "SELECT * FROM okokbilling";
 $resultOKOKBilling = $conn->query($sqlOKOKBilling);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                  I C O N S    F O R    T H E    A C C O U N T S    I N    T H E    U S E R    T A B L E
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $accountIcons = [
     "bank" => '<i class="fas fa-piggy-bank"></i>',
     "black_money" => '<i class="fas fa-money-bill-alt"></i>',
     "cosmo" => '<i class="fas fa-globe"></i>',
     "money" => '<i class="fas fa-money-bill"></i>',
 ];
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function formatIcon($account)
 {
     global $accountIcons;
@@ -202,93 +174,7 @@ function totalAccounts($conn) {
 
     return $totalAccounts;
 }
-
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                  S T A R T    O F   H T M L
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
-
-
-
-
-
-
-<div class="info-box">
-    <h2>Dashboard | Informationen</h2>
-    <p>Hier kannst Du die Daten unserer FiveM Gameserver einsehen, ohne direkten Zugriff auf die Datenbank zu haben. Keine Sorge, Du kannst hier nichts verändern – diese Funktionen sind derzeit nur für bestimmte Ränge geplant und werden noch entwickelt.</p>
-    <p>Unser Server befindet sich derzeit noch im Umbau und ist für die Öffentlichkeit offline. Die Änderungen, die wir vornehmen, werden einige Zeit in Anspruch nehmen, da wir nicht nur den Servernamen und das Logo ändern, sondern auch das gesamte Konzept des Servers.</p>
-    <p>Du kannst dich weiterhin einloggen und die neuesten Informationen abrufen, während wir an der Verbesserung des Servers arbeiten. Wir sind begeistert von den kommenden Änderungen und hoffen, dass Du sie genauso lieben wirst wie wir!</p>
-    <p>Vielen Dank, dass Du Teil der ROGUEV-Community bist!</p>
-    <p>Dein Entwickler-navigation von ROGUEV</p>
-</div>
-
-<div class="title2"><i class="fa-solid fa-crown title2icon"></i>Hall of Fame</div>
-<div class="new-sections-container" style="display: flex; justify-content: space-between;">
-    <div class="new-section-1" style="flex: 1;">
-        <!-- Left box content goes here -->
-        <img src="img/active.gif" alt="Active" class="activechat"><img>aktivste/r
-    </div>
-    <div class="equalsymbol"><i class="fa-solid fa-equals fa-beat"></i></div>
-    <div class="new-section-2" style="flex: 1;">
-        <!-- Right box content goes here -->
-    </div>
-    </div>
-    </div>
-</div>
-
-<div class="chatbox-container">
-  <div class="announcements">
-    <marquee behavior="scroll" direction="left">
-      <!-- Announcement messages go here -->
-      <span>📢 Willkommen im navigationchat, bitte haltet euch auch hier an die Regeln und verhaltet euch dementsprechend.</span>
-      <span><i class="fa-brands fa-discord title3icon"></i>dsc.gg/roguev</span>
-      <span><i class="fa-solid fa-code title3icon"></i>Chat entwickelt von push42</span>
-      <span><i class="fa-solid fa-wrench title3icon"></i>Der Chat bekommt regelmäßige Updates</span>
-      <span><i class="fa-solid fa-face-grin-tongue-wink title3icon"></i>Emoji-Button wird demnächst eingebaut!</span>
-    </marquee>
-  </div>
-  <div class="chatbox">
-    <div class="chat-overview">
-      <div class="overview-buttons">
-      <button id="joinchat-button" class="fancy-button" onclick="updateActiveUsers(chatJoined ? 'leave' : 'join')">Chat beitreten
-        </button>
-      </div>
-      <div class="online-symbol"></div>
-        <div class="welcome-message">
-      <p class="glowing-text">Chat ist Online!</p>
-    </div>
-      <p>
-        <span id="active-users">2</span> neue Nachrichten
-      </p>
-      <p>
-      <span id="total-messages">0</span> Nachrichten gesendet
-      </p>
-    </div>
-    <div class="message-container" id="message-container">
-      <!-- Chat messages go here -->
-    </div>
-    <div class="overlay">
-      <span class="icon"><i class="fa-solid fa-eye-slash fa-beat" style="color: #1e90ff;"></i></span>
-    </div>
-    <div class="input-container">
-      <input type="text" id="message-input" placeholder="Schreibe eine Nachricht...">
-      <p>Übrig: <span id="remaining-characters">75</span></p>
-      <button id="send-button">Nachricht senden</button>
-    </div>
-  </div>
-</div>
-
-<div class="todo-container">
-  <h2 class="title"><i class="fa-regular fa-circle-check todoicon"></i>To-Do Liste</h2>
-  <div class="input-wrapper">
-    <input type="text" id="task-input" placeholder="Neue Aufgabe hinzufügen...">
-    <button id="add-task-button">Hinzufügen</button>
-  </div>
-    <ul id="task-list"></ul>
-</div>
 
 <div class="wirtschafts-header"><i class="fa-solid fa-chart-simple fa-bounce wheadericon"></i>Wirtschaftsübersicht</div>
 <div class="wirtschafts-subheader">Erhalte einen Überblick über die Wirtschaft auf Rogue-V</div>
