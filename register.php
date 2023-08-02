@@ -47,8 +47,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                     if ($stmt->execute([$username, $hashed_password, $avatar_url])) {
+                        // Delete used code and generate a new one
+                        $delete_stmt = $pdo->prepare("DELETE FROM security_codes WHERE code = ?");
+                        $delete_stmt->execute([$provided_code]);
+
+                        $new_code = rand(100000, 999999); // Generate a new random security code
+
+                        $insert_stmt = $pdo->prepare("INSERT INTO security_codes (code) VALUES (?)");
+                        $insert_stmt->execute([$new_code]);
+
                         // Registration successful, display success message
                         $register_success = "Registrierung erfolgreich! Sie können sich jetzt einloggen.";
+
+                            // Call a JavaScript function to redirect the user after a delay
+                            echo '<script type="text/javascript">
+                                setTimeout(function(){
+                                    window.location.href = "login.php";
+                                }, 3000);
+                            </script>';
                     } else {
                         // Registration failed
                         $register_error = "Fehler bei der Registrierung. Bitte versuchen Sie es erneut.";
@@ -63,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Verbindung Fehlgeschlagen: " . $e->getMessage());
     }
 }
-    ?>
+?>
 <!DOCTYPE html>
 <html>
 
@@ -77,6 +93,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+
+    <?php if (isset($register_error)): ?>
+        <script>
+            window.onload = function() {
+                showModal("Registrierung fehlgeschlagen", "<?php echo $register_error; ?>", false);
+            }
+        </script>
+    <?php endif; ?>
+
+    <?php if (isset($register_success)): ?>
+        <script>
+            window.onload = function() {
+                showModal("Registrierung erfolgreich", "<?php echo $register_success; ?>", true);
+            }
+        </script>
+    <?php endif; ?>
+
     <div id="particles-js"></div>
     <div class="register-container">
     <img src="https://i.ibb.co/smLg902/Untitled-1.gif" alt="Logo" class="register-logo"></img>
@@ -126,7 +159,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" value="Registrieren">
         </form>
     </div>
-    <script src="js/script_register.js"></script>
-</body>
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2 class="modal-title"></h2>
+    <p class="modal-message"></p>
+  </div>
+</div>
+
+</body>
+<script>
+function showModal(title, message, success) {
+    const modal = document.getElementById("myModal");
+    document.querySelector('.modal-title').textContent = title;
+    document.querySelector('.modal-message').textContent = message;
+
+    if (success) {
+        document.querySelector('.modal-content').style.backgroundColor = '#4CAF50';
+    } else {
+        document.querySelector('.modal-content').style.backgroundColor = '#f44336';
+    }
+
+    modal.style.display = "block";
+    }
+
+    function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+    const modal = document.getElementById("myModal");
+    if (event.target === modal) {
+        closeModal();
+    }
+    }
+
+    function redirect(url) {
+    window.location.href = url;
+    }
+</script>
 </html>
