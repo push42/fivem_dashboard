@@ -8,7 +8,7 @@ function save_message($username, $avatar_url, $message) {
         $stmt = $conn->prepare("INSERT INTO chat_messages (username, avatar_url, message) VALUES (?, ?, ?)");
         $stmt->execute([$username, $avatar_url, $message]);
     } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+        die("Verbindung Fehlgeschlagen: " . $e->getMessage());
     }
 }
 
@@ -24,7 +24,7 @@ function get_messages($reverse = false) {
 
         return $messages;
     } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+        die("Verbindung Fehlgeschlagen: " . $e->getMessage());
     }
 }
 ?>

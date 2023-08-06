@@ -18,7 +18,7 @@ function connect_fivem_db() {
     $servername = 'localhost';
     $db_username = 'root';
     $password = '';
-    $database = 'fivem';
+    $database = 'db_fivem';
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$database", $db_username, $password);

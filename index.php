@@ -1,11 +1,8 @@
 <?php
 session_start();
 ini_set('memory_limit', '-1');
-// Start of the dashboard
-// Here you can for example the gather_info.php to track data from people visitng the dashboard
-// If you plan on using it, you may need to include a cookie banner depending on where you life
 include "functions/chat_functions.php";
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // Check if the user is not logged in, then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
@@ -92,17 +89,7 @@ $conn_webdev = new mysqli(
 if ($conn_webdev->connect_error) {
     die("Connection to webdev failed: " . $conn_webdev->connect_error);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Here i define the database table names, if you use different database tables you need to change them here, also the names of the rows you want to read out
-// You can also use this to just read out everything:
-//   $sqlUsers =
-//      "SELECT * FROM users";
-//   $resultUsers = $conn->query($sqlUsers);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $sqlUsers =
     "SELECT identifier, firstname, lastname, job, job_grade, accounts, `group` FROM users";
 $resultUsers = $conn->query($sqlUsers);
@@ -355,7 +342,7 @@ function totalAccounts($conn) {
     <div class="account-settings-modal">
         <span class="close-icon" id="close-modal">&times;</span>
         <h2><i class="fa-solid fa-user-gear labelicon"></i>Kontoeinstellungen</h2>
-        <form id="avatar-form" method="post" action="update_avatar.php">
+        <form id="avatar-form" method="post" action="functions/update_avatar.php">
             <label><i class="fa-solid fa-image labelicon"></i>Avatar (URL):</label>
             <input type="text" name="new_avatar_url" placeholder="www.dein-link.de/image.png" >
 
@@ -1873,7 +1860,7 @@ function sendJoinOrLeaveMessage(username, avatarURL, message) {
   data.append('username', 'System'); // 'System' user for these actions
   data.append('avatar_url', 'img/system_avatar.png'); // Replace with your chosen path for System avatar
   data.append('message', message); // Complete message string
-  xhr.open('POST', 'join_or_leave_chat.php', true);
+  xhr.open('POST', 'functions/join_or_leave_chat.php', true);
   xhr.onload = function () {
     if (xhr.status === 200) {
       // You can handle a successful response here if needed
@@ -1930,7 +1917,7 @@ joinChatButton.addEventListener('click', function () {
 function fetchTotalMessages() {
   // Send an AJAX request to the fetch_messages.php file
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'fetch_messages.php', true);
+  xhr.open('GET', 'functions/fetch_messages.php', true);
   xhr.onload = function () {
     if (xhr.status === 200) {
       // If the AJAX request is successful, update the total messages count on the page
@@ -1962,7 +1949,7 @@ setInterval(refreshTotalMessages, 5000);
   // Function to fetch and display chat messages when the page loads
   function loadChatMessages() {
     // Fetch the chat messages from the server
-    fetch('get_messages.php')
+    fetch('functions/get_messages.php')
       .then((response) => response.json())
       .then((data) => {
         // Iterate through the retrieved messages in reverse order and display them in the chatbox
@@ -2163,7 +2150,7 @@ messageInput.addEventListener('keydown', (event) => {
     data.append('message', message);
 
     // Configure the AJAX request
-    xhr.open('POST', 'save_message.php', true);
+    xhr.open('POST', 'functions/save_message.php', true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     // Define the callback function when the request completes
@@ -2197,7 +2184,7 @@ function addTask() {
 
   // AJAX request to save the task to the database
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'save_task.php', true);
+  xhr.open('POST', 'functions/save_task.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onload = function () {
     if (xhr.status === 200) {
@@ -2224,7 +2211,7 @@ function addTask() {
 function toggleTaskCompletion(taskItem, taskId) {
     // AJAX request to toggle the completion status in the database
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'toggle_task_completion.php', true);
+    xhr.open('POST', 'functions/toggle_task_completion.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
       if (xhr.status === 200) {
@@ -2250,7 +2237,7 @@ function toggleTaskCompletion(taskItem, taskId) {
 function loadTasks() {
   // AJAX request to load tasks from the database
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'get_tasks.php', true);
+  xhr.open('GET', 'functions/get_tasks.php', true);
   xhr.onload = function () {
     if (xhr.status === 200) {
       // If tasks are successfully retrieved from the database, display them in the To-Do list
@@ -2293,7 +2280,7 @@ function loadTasks() {
 function deleteTask(taskItem, taskId) {
     // AJAX request to delete the task from the database
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'delete_task.php', true);
+    xhr.open('POST', 'functions/delete_task.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
       if (xhr.status === 200) {
@@ -2366,7 +2353,7 @@ joinTeamChatButton.addEventListener('click', function() {
 // Check if the player is still connected / has the window open
 setInterval(function() {
   // Perform an AJAX request to a PHP script to update the user's "last seen" time
-  $.post('heartbeat.php', function(data) {
+  $.post('functions/heartbeat.php', function(data) {
     // You can handle the response here if needed
   });
 }, 5000); // Every 5 seconds
@@ -2378,7 +2365,7 @@ function updateOnlineUsers() {
         const xhr = new XMLHttpRequest();
 
         // Configure the request
-        xhr.open('GET', 'get_online_users.php', true);
+        xhr.open('GET', 'functions/get_online_users.php', true);
 
         xhr.onload = function() {
             if (this.status === 200) {
