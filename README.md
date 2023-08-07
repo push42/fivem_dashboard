@@ -1,5 +1,7 @@
 # FiveM Admin Dashboard
 
+## **ATTENTION:** Downlaod the latest realease, i broke something in the main branch and working on fixing it :D
+
 
 ## Preview
 ![Login Preview](https://i.ibb.co/r5qYXd1/preview-login.png)
