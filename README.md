@@ -2,7 +2,7 @@
 📊 ![Custom](https://img.shields.io/badge/FiveM%20Admin%20Dashboard-2449ed)
 
 ![Custom](https://img.shields.io/badge/still%20in-Development-blue)
-![Custom2](https://img.shields.io/badge/Licence-MLI%20license%20-blue)
+![Custom2](https://img.shields.io/badge/Licence-MIT%20license%20-blue)
 ![Custom2](https://img.shields.io/badge/Version-1.0.4-blue)
 ![Custom2](https://img.shields.io/badge/Release-1.0.2-blue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/push42/fivem_dashboard)
