@@ -1,10 +1,16 @@
 # FiveM Admin Dashboard
+📊 ![Custom](https://img.shields.io/badge/FiveM%20Admin%20Dashboard-2449ed)
 
-## **ATTENTION:** Downlaod the latest realease, i broke something in the main branch and working on fixing it :D
+![Custom](https://img.shields.io/badge/still%20in-Development-blue)
+![Custom2](https://img.shields.io/badge/Licence-GPL%203.0%20license%20-blue)
+![Custom2](https://img.shields.io/badge/Version-1.0.4-blue)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/push42/fivem_dashboard)
+
+## **ATTENTION:** Downlaod the latest realease, i broke something in the main branch.
 
 
 ## Preview
-![Login Preview](https://i.ibb.co/r5qYXd1/preview-login.png)
+![Login Preview](https://i.ibb.co/njccy62/preview-login.png)
 ![Register Preview](https://i.ibb.co/JQR8TQN/preview-register.png)
 ![Dashboard Preview](https://i.ibb.co/mJXhgwf/preview-dashboard0.png)
 ![Chat Preview 0](https://i.ibb.co/3zbWY94/preview-chat0.png)
