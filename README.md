@@ -7,6 +7,8 @@
 ![Custom2](https://img.shields.io/badge/Release-1.0.2-blue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/push42/fivem_dashboard)
 
+### NEW MODERN DASHBOARD: [View Repo](https://github.com/push42/fivem_dashboard_overhauled)
+### THIS DASHBOARD IS OLD AND USES A LOT OF PACKAGES THAT HAVE NOW SERIOUS SECURITY FLAWS. CONSIDER USING THE UPDATED ONE ABOVE
 ## **ATTENTION:** Downlaod the latest realease, i broke something in the main branch.
 
 
